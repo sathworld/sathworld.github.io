@@ -13,9 +13,9 @@ export default {
         'purple-dark': {
           DEFAULT: '#2A1A40',
           light: '#472D60',
-          contrast: '#9145b6'
+          contrast: '#9145B6'
         }
-      }
+      },
     },
   },
   plugins: [],

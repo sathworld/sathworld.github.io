@@ -5,3 +5,15 @@
 html {
   scroll-behavior: smooth;
 }
+
+
+@layer utilities {
+  .shadow-purple-dark {
+      --tw-shadow-color: #6b21a8; /* Purple Color */
+      --tw-shadow: var(--tw-shadow-colored);
+  }
+  .shadow-purple-dark-hover {
+    --tw-shadow-color: #9333ea; /* Purple Color */
+    --tw-shadow: var(--tw-shadow-colored);
+}
+}

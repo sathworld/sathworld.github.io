@@ -1,8 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
 import { MoonIcon, SunIcon, Bars3Icon } from '@heroicons/react/24/solid';
+import { useTheme } from '../utils/theme';
 
 export const Navbar = () => {
-    const [isDarkMode, setIsDarkMode] = useState(false);
+    const { isDarkMode, setIsDarkMode } = useTheme();
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // State for mobile menu
     const mobileMenuRef = useRef(null); // Reference for mobile menu
     const menuButtonRef = useRef(null); // Reference for the hamburger menu button
@@ -45,14 +46,14 @@ export const Navbar = () => {
     }, []);
 
     return (
-        <nav className="fixed w-full bg-purple-light dark:bg-purple-dark shadow-lg dark:shadow-lg dark:shadow-purple-800 z-50">
+        <nav className="fixed w-full bg-purple-light dark:bg-purple-dark shadow-lg dark:shadow-xl dark:shadow-purple-dark z-50">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-16">
                     {/* Logo */}
                     <a href="#home" className="text-xl font-bold text-purple-dark dark:text-purple-light">
-                        Your Portfolio
+                        Damir Gazizullin
                     </a>
-                    
+
                     {/* Navigation Links (Centered on desktop) */}
                     <div className="hidden md:flex flex-grow justify-center space-x-8">
                         {links.map((item) => (
@@ -97,18 +98,25 @@ export const Navbar = () => {
             {/* Mobile Menu */}
             <div 
                 ref={mobileMenuRef} // Add ref to mobile menu
-                className={`md:hidden ${isMobileMenuOpen ? 'block' : 'hidden'} bg-purple-light dark:bg-purple-dark p-4`}
+                className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out
+                ${isMobileMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'}
+                `}
             >
-                {links.map((item) => (
-                    <a 
-                        key={item.href} 
-                        href={item.href} 
-                        className="block text-purple-dark dark:text-purple-light py-2"
-                        onClick={handleLinkClick} // Close menu when a link is clicked
-                    >
-                        {item.name}
-                    </a>
-                ))}
+                <div className={`transform transition-transform duration-300 ease-in-out 
+                    ${isMobileMenuOpen ? 'translate-y-0' : '-translate-y-10'}
+                    pl-4`} // Added padding-left (pl-4) here for whitespace on the left
+                >
+                    {links.map((item) => (
+                        <a 
+                            key={item.href} 
+                            href={item.href} 
+                            className="block text-purple-dark dark:text-purple-light py-2"
+                            onClick={handleLinkClick} // Close menu when a link is clicked
+                        >
+                            {item.name}
+                        </a>
+                    ))}
+                </div>
             </div>
         </nav>
     );
