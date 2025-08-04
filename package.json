@@ -1,7 +1,7 @@
 {
   "name": "my-portfolio",
   "version": "0.1.0",
-  "homepage": "https://sathworld.github.io/react-gh-pages",
+  "homepage": "https://sathworld.github.io/",
   "private": false,
   "dependencies": {
     "@heroicons/react": "^2.2.0",
