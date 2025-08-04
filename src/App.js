@@ -28,10 +28,8 @@ export default App;
 
 
 // TODO: Change Fonts
-// TODO: Add a Favicon
 // TODO: Add a Footer
 // TODO: Add a 404 Page
-// TODO: Add an animated background
 // TODO: Loading spinner (no)
 // TODO: Add a blog section
 // TODO: Add a resume section
