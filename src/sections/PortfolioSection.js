@@ -75,26 +75,31 @@ export const PortfolioSection = () => {
                     );
                 })}
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-8">
-                <AnimatePresence mode="popLayout">
-                    {filteredProjects.map(project => (
+            <div className="flex flex-wrap gap-8">
+                {filteredProjects.map(project => {
+                    const expanded = expandedProject === project.id;
+                    return (
                         <motion.div
                             key={project.id}
                             initial={{ opacity: 0 }}
-                            animate={{ opacity: 1, transition: { duration: 0.3 } }}
-                            exit={{ opacity: 0, transition: { duration: 0.2 } }}
-                            className={expandedProject === project.id ? "col-span-1 sm:col-span-2 md:col-span-2" : "col-span-1"}
+                            animate={{ opacity: 1, transition: { duration: 0.25 } }}
+                            exit={{ opacity: 0, transition: { duration: 0.15 } }}
+                            className={
+                                `w-full ${expanded ? 'sm:w-full' : 'sm:w-[calc(50%-1rem)]'} ` +
+                                'transition-[width] duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]'
+                            }
+                            style={{}}
                         >
                             <ProjectCard
                                 title={project.title}
-                                description={expandedProject === project.id ? project.description : ""}
+                                description={expanded ? project.description : ""}
                                 tags={project.tags}
-                                onClick={() => setExpandedProject(expandedProject === project.id ? null : project.id)}
-                                isExpanded={expandedProject === project.id}
+                                onClick={() => setExpandedProject(expanded ? null : project.id)}
+                                isExpanded={expanded}
                             />
                         </motion.div>
-                    ))}
-                </AnimatePresence>
+                    );
+                })}
             </div>
         </section>
     );
