@@ -9,40 +9,80 @@ export const PortfolioSection = () => {
         { id: 3, title: "Embedded Systems", tags: ["Firmware", "IoT"], description: "Developed firmware for an IoT device with real-time constraints." }
     ];
 
-    const tags = ["All", "PCB", "High Voltage", "HDL", "Digital Logic", "Firmware", "IoT"];
-    const [selectedTag, setSelectedTag] = useState("All");
+    const tags = ["PCB", "High Voltage", "HDL", "Digital Logic", "Firmware", "IoT"]; // Core selectable tags
+    const [selectedTags, setSelectedTags] = useState([]); // multi-select
+    const [filterMode, setFilterMode] = useState('OR'); // OR | AND
     const [expandedProject, setExpandedProject] = useState(null);
+    
+    const toggleMode = () => setFilterMode(m => m === 'OR' ? 'AND' : 'OR');
 
-    const filteredProjects = selectedTag === "All" 
-      ? projects 
-      : projects.filter(project => project.tags.includes(selectedTag));
+    const handleTagClick = (tag) => {
+        setSelectedTags(prev => {
+            if (prev.includes(tag)) {
+                const next = prev.filter(t => t !== tag);
+                return next; // allow empty selection => show all
+            }
+            return [...prev, tag];
+        });
+    };
+
+    const filteredProjects = selectedTags.length === 0
+        ? projects
+        : projects.filter(project => {
+            if (filterMode === 'OR') {
+                return selectedTags.some(tag => project.tags.includes(tag));
+            }
+            // AND mode
+            return selectedTags.every(tag => project.tags.includes(tag));
+        });
 
     return (
         <section id="portfolio" className="min-h-screen bg-purple-light dark:bg-purple-dark text-purple-dark dark:text-purple-light max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
             <h1 className="text-3xl font-bold mb-12 text-center">My Projects</h1>
-            <div className="flex flex-wrap gap-2 mb-4">
-                {tags.map(tag => (
-                    <button 
-                        key={tag} 
-                        onClick={() => setSelectedTag(tag)} 
-                        className={`px-4 py-2 rounded-lg font-semibold transition-all duration-200 
-                        ${selectedTag === tag 
-                            ? "bg-purple-dark text-white dark:bg-purple-light dark:text-black" 
-                            : "border-2 border-purple-dark text-purple-dark dark:border-purple-light dark:text-purple-light"}`}
-                    >
-                        {tag}
-                    </button>
-                ))}
+            <div className="flex flex-wrap items-center gap-2 mb-4">
+                <button
+                    type="button"
+                    onClick={toggleMode}
+                    className="px-4 py-2 rounded-lg font-semibold bg-purple-dark text-white dark:bg-purple-light dark:text-black focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 shadow-sm"
+                >
+                    Mode: {filterMode}
+                </button>
+                <button
+                    type="button"
+                    onClick={() => setSelectedTags([])}
+                    disabled={selectedTags.length === 0}
+                    className={`px-3 py-2 rounded-lg font-medium border-2 transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70
+                        ${selectedTags.length === 0 ? 'border-purple-dark/30 text-purple-dark/40 dark:border-purple-light/30 dark:text-purple-light/40 cursor-not-allowed' : 'border-purple-dark text-purple-dark dark:border-purple-light dark:text-purple-light hover:bg-purple-dark/10 dark:hover:bg-purple-light/10'}`}
+                >
+                    Clear
+                </button>
+                {tags.map(tag => {
+                    const active = selectedTags.includes(tag);
+                    return (
+                        <button
+                            key={tag}
+                            type="button"
+                            onClick={() => handleTagClick(tag)}
+                            aria-pressed={active}
+                            className={`px-4 py-2 rounded-lg font-semibold transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70
+                                ${active
+                                    ? 'bg-purple-dark text-white dark:bg-purple-light dark:text-black'
+                                    : 'border-2 border-purple-dark text-purple-dark dark:border-purple-light dark:text-purple-light hover:bg-purple-dark/10 dark:hover:bg-purple-light/10'}
+                            `}
+                        >
+                            {tag}
+                        </button>
+                    );
+                })}
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-8">
                 <AnimatePresence mode="popLayout">
                     {filteredProjects.map(project => (
                         <motion.div
                             key={project.id}
-                            layout
-                            initial={{ opacity: 0, scale: 0.95, y: 12 }}
-                            animate={{ opacity: 1, scale: 1, y: 0, transition: { duration: 0.35, ease: [0.22,0.7,0.3,1] } }}
-                            exit={{ opacity: 0, scale: 0.9, y: -8, transition: { duration: 0.25 } }}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1, transition: { duration: 0.3 } }}
+                            exit={{ opacity: 0, transition: { duration: 0.2 } }}
                             className={expandedProject === project.id ? "col-span-1 sm:col-span-2 md:col-span-2" : "col-span-1"}
                         >
                             <ProjectCard
