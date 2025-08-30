@@ -10,8 +10,8 @@ import { useState, useRef, useEffect } from 'react';
 const BASE_NAME = 'Damir Gazizullin - ';
 const RESUME_OPTIONS = [
   { id: 'fpga', label: 'FPGA / ASIC Resume', suffix: 'FPGA ASIC' },
-  { id: 'electrical', label: 'Electrical Engineering Resume', suffix: 'Electrical Engineering' },
-  { id: 'embedded', label: 'Embedded Systems Resume', suffix: 'Embedded Systems' }
+  { id: 'electrical', label: 'Electrical Engineering Resume', suffix: 'Electrical' },
+  { id: 'embedded', label: 'Embedded Systems Resume', suffix: 'Embedded' }
 ];
 
 export const ResumeDropdown = ({ variant = 'outline', size = 'md', align = 'center', fullWidth = false }) => {

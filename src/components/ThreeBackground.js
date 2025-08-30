@@ -3,6 +3,7 @@ import { Suspense } from 'react';
 import { Model as ChildrenOfTheCity } from './ChildrenOfTheCity';
 import { ResponsiveBobbleCamera } from './ResponsiveBobbleCamera';
 import { useTheme } from '../utils/theme';
+import { HorizonParagraphs } from './HorizonParagraphs';
 // import { useControls } from 'leva';
 
 const ThreeBackground = () => {
@@ -55,6 +56,7 @@ const ThreeBackground = () => {
           />
 
           <ChildrenOfTheCity/>
+          <HorizonParagraphs darkMode={isDarkMode} />
         </Suspense>
       </Canvas>
     </div>
