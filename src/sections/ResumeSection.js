@@ -24,7 +24,7 @@ export const ResumeSection = () => {
     ];
 
     return (
-        <section id="resume" className="min-h-screen bg-purple-light dark:bg-purple-dark text-purple-dark dark:text-purple-light max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <section id="resume" className="min-h-screen text-purple-dark dark:text-purple-light max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 bg-transparent">
             <h1 className="text-3xl font-bold mb-12 text-center">My Resume</h1>
             <div className="space-y-8">
                 {experiences.map(experience => (

@@ -19,7 +19,7 @@ const ThreeBackground = () => {
   // });
 
   return (
-    <div className="absolute top-0 left-0 w-full h-full z-0">
+  <div className="fixed inset-0 w-full h-full z-0 pointer-events-none select-none">
       <Canvas
         camera={{
           fov: 45,

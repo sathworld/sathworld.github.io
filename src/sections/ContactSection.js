@@ -1,4 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
+import { SocialButtons } from '../components/SocialButtons';
+import { ResumeDropdown } from '../components/ResumeDropdown';
 
 export const ContactSection = () => {
     const [copied, setCopied] = useState(false); // controls badge
@@ -52,23 +54,30 @@ export const ContactSection = () => {
     const disguisedVisible = 'dgazizul [at] uwaterloo [dot] ca';
 
     return (
-        <section id="contact" className="min-h-screen bg-purple-light dark:bg-purple-dark text-purple-dark dark:text-purple-light max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <section id="contact" className="min-h-screen text-purple-dark dark:text-purple-light max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 bg-transparent">
             <h1 className="text-3xl font-bold mb-12 text-center">Contact Me</h1>
-            <div className="flex flex-col items-center gap-4">
-                <button
-                    type="button"
-                    onClick={handleCopy}
-                    className="relative group px-7 py-4 rounded-lg card-gradient-light dark:card-gradient-dark text-purple-dark dark:text-purple-light font-semibold shadow-md hover:shadow-lg transition-all duration-300 card-surface border border-purple-500/20 dark:border-purple-300/10"
-                    aria-label="Copy my email address to your clipboard"
-                    data-email={encoded}
-                >
-                    <span className="select-none" aria-hidden="true">{disguisedVisible}</span>
-                    <span className="block text-[11px] font-normal opacity-70 group-hover:opacity-90 transition-opacity mt-1">Click to copy real email</span>
-                    <span
-                        className={`pointer-events-none absolute -top-2 -right-2 text-xs px-2 py-0.5 rounded-full bg-emerald-600 text-white shadow transition-opacity ${copied ? 'opacity-100' : 'opacity-0'}`}
-                    >Copied!</span>
-                </button>
-                {/* (Optional) Progressive reveal after interaction */}
+            <div className="flex flex-col items-center gap-10 w-full max-w-5xl">
+                <div className="w-full flex flex-col sm:flex-row gap-8">
+                    {/* Left: Large email button */}
+                    <button
+                        type="button"
+                        onClick={handleCopy}
+                        className="relative group flex-1 px-8 py-6 rounded-lg card-gradient-light dark:card-gradient-dark text-purple-dark dark:text-purple-light font-semibold shadow-md hover:shadow-lg transition-all duration-300 card-surface border border-purple-500/20 dark:border-purple-300/10 text-left"
+                        aria-label="Copy my email address to your clipboard"
+                        data-email={encoded}
+                    >
+                        <span className="select-none block text-base sm:text-lg" aria-hidden="true">{disguisedVisible}</span>
+                        <span className="block text-[11px] font-normal opacity-70 group-hover:opacity-90 transition-opacity mt-2">Click to copy real email</span>
+                        <span
+                            className={`pointer-events-none absolute -top-2 -right-2 text-xs px-2 py-0.5 rounded-full bg-emerald-600 text-white shadow transition-opacity ${copied ? 'opacity-100' : 'opacity-0'}`}
+                        >Copied!</span>
+                    </button>
+                    {/* Right: Vertical stack (Resume + socials) */}
+                    <div className="flex flex-row sm:flex-col sm:w-60 gap-4 items-stretch">
+                        <SocialButtons size="sm" align="center" variant="outline" includeEmail={false} direction="column" />
+                        <ResumeDropdown variant="outline" fullWidth size="sm" align="center" />
+                    </div>
+                </div>
                 {showEmail && (
                     <div
                         className={`text-sm font-mono text-emerald-600 dark:text-emerald-400 transition-opacity duration-500 ${fadeEmail ? 'opacity-0' : 'opacity-100'}`}

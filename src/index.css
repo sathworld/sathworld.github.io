@@ -64,4 +64,38 @@ html {
   .hover-accent:hover {
     @apply ring-1 ring-fuchsia-400/50 dark:ring-fuchsia-500/50;
   }
+
+  /* Gradient text matching card gradient (light & dark variants) */
+  /* Gradient text utility */
+  :root {
+    --gradient-text: linear-gradient(138deg,#6d259f 0%,#7d33b3 32%,#9d55d4 60%,#c7a4f5 100%); /* Richer contrast on light bg */
+  }
+  .dark {
+    --gradient-text: linear-gradient(145deg, rgba(255,232,255,0.95) 0%, rgba(240,212,255,0.9) 38%, rgba(225,195,255,0.85) 70%, rgba(240,212,255,0.9) 100%); /* Softer glow on dark */
+  }
+  .text-gradient {
+    background-image: var(--gradient-text);
+    background-size: 180% 180%;
+    background-position: 0% 50%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-shift 5s linear infinite;
+    /* Text shadow for readability over busy 3D background */
+    text-shadow:
+      0 0 0.5px #ffffff;
+  }
+  .dark .text-gradient {
+    text-shadow:
+      0 0 0.5px #6b21a8;
+  }
+  @keyframes gradient-shift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .text-gradient { animation: none; }
+  }
 }

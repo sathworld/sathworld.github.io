@@ -37,7 +37,7 @@ export const PortfolioSection = () => {
         });
 
     return (
-        <section id="portfolio" className="min-h-screen bg-purple-light dark:bg-purple-dark text-purple-dark dark:text-purple-light max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <section id="portfolio" className="min-h-screen text-purple-dark dark:text-purple-light max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 bg-transparent">
             <h1 className="text-3xl font-bold mb-12 text-center">My Projects</h1>
             <div className="flex flex-wrap items-center gap-2 mb-4">
                 <button
@@ -52,7 +52,7 @@ export const PortfolioSection = () => {
                     onClick={() => setSelectedTags([])}
                     disabled={selectedTags.length === 0}
                     className={`px-3 py-2 rounded-lg font-medium border-2 transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70
-                        ${selectedTags.length === 0 ? 'border-purple-dark/30 text-purple-dark/40 dark:border-purple-light/30 dark:text-purple-light/40 cursor-not-allowed' : 'border-purple-dark text-purple-dark dark:border-purple-light dark:text-purple-light hover:bg-purple-dark/10 dark:hover:bg-purple-light/10'}`}
+                        ${selectedTags.length === 0 ? 'border-purple-dark/30 text-purple-dark/40 dark:border-purple-light/30 dark:text-purple-light/40 cursor-not-allowed' : 'border-purple-dark text-purple-dark dark:border-purple-light dark:text-purple-light'}`}
                 >
                     Clear
                 </button>

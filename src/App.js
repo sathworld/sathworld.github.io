@@ -6,17 +6,21 @@ import { PortfolioSection } from "./sections/PortfolioSection";
 import { ContactSection } from "./sections/ContactSection";
 import { ResumeSection } from './sections/ResumeSection';
 import { SkillsSection } from './sections/SkillsSection';
+import ThreeBackground from './components/ThreeBackground';
 
 export const App = () => {
   return (
     <ThemeProvider>
-      <div className="bg-purple-light dark:bg-purple-dark text-purple-dark dark:text-purple-light">
+      <div className="relative min-h-screen bg-purple-light dark:bg-purple-dark text-purple-dark dark:text-purple-light overflow-hidden">
+        <ThreeBackground />
+        <div className="relative z-10">
           <Navbar />
           <HomeSection />
           <PortfolioSection />
           <ResumeSection />
           <SkillsSection />
           <ContactSection />
+        </div>
       </div>
     </ThemeProvider>
   );
