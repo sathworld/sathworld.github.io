@@ -3,7 +3,6 @@ import { ThemeProvider } from "./utils/theme";
 import { Navbar } from "./components/Navbar";
 import { HomeSection } from "./sections/HomeSection";
 import { PortfolioSection } from "./sections/PortfolioSection";
-import { ModelsSection } from "./sections/ModelsSection";
 import { ContactSection } from "./sections/ContactSection";
 import { ResumeSection } from './sections/ResumeSection';
 import { SkillsSection } from './sections/SkillsSection';
@@ -17,7 +16,6 @@ export const App = () => {
           <PortfolioSection />
           <ResumeSection />
           <SkillsSection />
-          <ModelsSection />
           <ContactSection />
       </div>
     </ThemeProvider>

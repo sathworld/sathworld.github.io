@@ -2,7 +2,7 @@ import { Canvas } from '@react-three/fiber';
 import { OrbitControls, useGLTF } from '@react-three/drei';
 
 
-const modelPathPCB = `${process.env.PUBLIC_URL}/models/pcb.glb`;
+const modelPathPCB = `/models/pcb.glb`;
 const ModelPCB = (props) => {
     const { nodes, materials } = useGLTF(modelPathPCB)
     return (

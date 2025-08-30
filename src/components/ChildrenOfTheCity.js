@@ -6,11 +6,10 @@ Command: npx gltfjsx@6.5.3 .\public\models\childrenofthecity.gltf
 import React from 'react'
 import * as THREE from 'three'
 import { useGLTF, useTexture } from '@react-three/drei'
-import { PI, PI2 } from 'three/tsl'
 
 export function Model({ offsetX = 0, offsetY = -4.2, offsetZ = 0, ...props }) {
-  const { nodes, materials } = useGLTF(`${process.env.PUBLIC_URL}/models/childrenofthecity.gltf`)
-  const texture = useTexture(`${process.env.PUBLIC_URL}/textures/Baked.png`)
+  const { nodes, materials } = useGLTF(`${process.env.PUBLIC_URL}/models/childrenofthecity-swoosh.gltf`)
+  const texture = useTexture(`${process.env.PUBLIC_URL}/textures/BakedSmall.png`)
   texture.flipY = false
   texture.colorSpace = THREE.SRGBColorSpace
 
@@ -62,4 +61,4 @@ const textureMaterialBox = new THREE.MeshStandardMaterial({
   )
 }
 
-useGLTF.preload(`${process.env.PUBLIC_URL}/models/childrenofthecity.gltf`)
+useGLTF.preload(`${process.env.PUBLIC_URL}/models/childrenofthecity-swoosh.gltf`)

@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 export const ProjectCard = ({ title, description, tags, onClick, isExpanded }) => {
     return (
         <motion.div
-            className="p-6 bg-purple-light dark:bg-purple-dark rounded-lg shadow-md dark:shadow-md dark:shadow-purple-dark hover:shadow-md dark:hover:shadow-md dark:hover:shadow-purple-dark-hover transition-shadow duration-200 min-w-[250px] flex flex-col"
+            className="p-6 card-surface card-gradient-light dark:card-gradient-dark hover:shadow-lg min-w-[250px] flex flex-col interactive hover-accent"
             whileHover={{ scale: 1.02 }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

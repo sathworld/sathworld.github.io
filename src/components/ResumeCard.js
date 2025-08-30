@@ -1,7 +1,7 @@
 // ResumeCard.js
 export const ResumeCard = ({ title, company, date, description, tags, logo }) => {
     return (
-        <div className="p-6 bg-purple-light dark:bg-purple-dark rounded-lg shadow-md dark:shadow-md dark:shadow-purple-dark hover:shadow-md dark:hover:shadow-md dark:hover:shadow-purple-dark-hover transition-shadow duration-200 flex flex-col sm:flex-row min-w-[250px]">
+    <div className="p-6 card-surface card-gradient-light dark:card-gradient-dark hover:shadow-lg flex flex-col sm:flex-row min-w-[250px] interactive hover-accent">
             {/* Logo and Content Layout */}
             <div className="flex sm:flex-row flex-col sm:mr-6 mb-4 sm:mb-0 justify-center sm:justify-start items-center sm:items-start w-full sm:w-auto">
                 {/* Logo on top for small screens, side by side on larger screens */}

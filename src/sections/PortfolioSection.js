@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { ProjectCard } from '../components/ProjectCard';
 
 export const PortfolioSection = () => {
@@ -35,21 +35,26 @@ export const PortfolioSection = () => {
                 ))}
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-8">
-                {filteredProjects.map(project => (
-                    <motion.div 
-                        key={project.id} 
-                        layout 
-                        className={expandedProject === project.id ? "col-span-1 sm:col-span-2 md:col-span-2" : "col-span-1"}
-                    >
-                        <ProjectCard 
-                            title={project.title} 
-                            description={expandedProject === project.id ? project.description : ""} 
-                            tags={project.tags} 
-                            onClick={() => setExpandedProject(expandedProject === project.id ? null : project.id)}
-                            isExpanded={expandedProject === project.id}  // Passes the expanded state
-                        />
-                    </motion.div>
-                ))}
+                <AnimatePresence mode="popLayout">
+                    {filteredProjects.map(project => (
+                        <motion.div
+                            key={project.id}
+                            layout
+                            initial={{ opacity: 0, scale: 0.95, y: 12 }}
+                            animate={{ opacity: 1, scale: 1, y: 0, transition: { duration: 0.35, ease: [0.22,0.7,0.3,1] } }}
+                            exit={{ opacity: 0, scale: 0.9, y: -8, transition: { duration: 0.25 } }}
+                            className={expandedProject === project.id ? "col-span-1 sm:col-span-2 md:col-span-2" : "col-span-1"}
+                        >
+                            <ProjectCard
+                                title={project.title}
+                                description={expandedProject === project.id ? project.description : ""}
+                                tags={project.tags}
+                                onClick={() => setExpandedProject(expandedProject === project.id ? null : project.id)}
+                                isExpanded={expandedProject === project.id}
+                            />
+                        </motion.div>
+                    ))}
+                </AnimatePresence>
             </div>
         </section>
     );

@@ -8,7 +8,7 @@ export const SkillsSection = () => {
             <h1 className="text-3xl font-bold mb-12 text-center">Technical Skills</h1>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                 {skills.map((skillCategory, index) => (
-                    <div key={index} className="p-6 bg-purple-light dark:bg-purple-dark rounded-lg shadow-md dark:shadow-md dark:shadow-purple-dark hover:shadow-lg dark:hover:shadow-purple-dark-hover transition-shadow duration-200">
+                    <div key={index} className="p-6 card-surface card-gradient-light dark:card-gradient-dark hover:shadow-lg hover-accent">
                         <h2 className="text-xl font-semibold text-purple-dark dark:text-purple-light mb-4">{skillCategory.category}</h2>
                         <p className="text-purple-dark-contrast dark:text-purple-light-contrast">
                             {skillCategory.items}
