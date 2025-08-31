@@ -36,6 +36,9 @@ export const resumeData = {
       location: "Kitchener, ON",
       title: "Product Development Coop",
       duration: "January 2025 – April 2025",
+  logo: "/logos/strivonix.webp", // light / default
+  darkLogo: "/logos/strivonix-dark.webp", // optional dark mode variant
+  website: "https://www.strivonix.com", // replace with real URL
       description: [
         "Led the design and testing of a portable pneumatic massage device's main 4-layer PCB, exceeding the required targets, achieving 97% functionality on the first design iteration and reducing BOM cost by over 30%.",
         "Built ESP32-S3 firmware using ESP-IDF with FreeRTOS, utilizing software FSMs for peripheral interactions, achieving 95% accuracy for sensor readings using adaptively tuned Kalman filtering.",
@@ -47,6 +50,8 @@ export const resumeData = {
       location: "Waterloo, ON",
       title: "Founder & Technical Lead",
       duration: "December 2024 – Present",
+  logo: "/logos/uwasic.webp",
+  website: "https://uwasic.com", // replace with real URL
       description: [
         "Founded and led UWASIC, which became the IEEE Solid-State Circuits Society Student Chapter for the KW Section.",
         "Directed Dino Game ASIC project that targets open-source PDKs (IHP Open130-G2, SkyWater SKY130), reduced used area by over 10%, led RTL design and integration, meeting the tapeout deadline ahead of schedule by 1 week.",
@@ -61,6 +66,8 @@ export const resumeData = {
       location: "Waterloo, ON",
       title: "Electrical Team Lead",
       duration: "December 2023 – Present",
+  logo: "/logos/electrium-mobility.webp",
+  website: "https://electriummobility.com", // replace with real URL
       description: [
         "Taught 20+ workshops on schematic capture, PCB layout and routing, board bring-up, as well as IPC-compliant design and soldering, improving the reliability of the submitted designs by 30%.",
         "Designed and validated the design of a custom brushless motor electronic speed controller (ESC), reducing cost by 20% and extending the number of available IO by 10% compared to existing micromobility ESCs on the market.",
