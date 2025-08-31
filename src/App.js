@@ -14,11 +14,9 @@ export const App = () => {
       <a href="#home" className="skip-link sr-only focus:not-sr-only">Skip to content</a>
       <div className="relative min-h-screen bg-purple-light dark:bg-purple-dark text-purple-dark dark:text-purple-light overflow-hidden">
         <ThreeBackground />
-        <header className="relative z-10">
-          <Navbar />
-          <h1 className="sr-only" id="site-title">Damir Gazizullin Portfolio</h1>
-        </header>
-        <div className="relative z-10" role="main" id="main-content" aria-labelledby="site-title">
+        <Navbar />
+        <h1 className="sr-only" id="site-title">Damir Gazizullin Portfolio</h1>
+        <div className="relative z-10 pt-16" role="main" id="main-content" aria-labelledby="site-title">
           <HomeSection />
           <PortfolioSection />
           <ResumeSection />

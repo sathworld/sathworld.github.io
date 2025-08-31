@@ -18,7 +18,7 @@ export const ResumeCard = ({ title, company, date, description, tags, logo }) =>
             <div className="flex-1">
                 <h2 className="text-2xl font-semibold text-purple-dark dark:text-purple-light">{title}</h2>
                 <p className="text-lg text-purple-dark dark:text-purple-light">
-                    {company} <span className="text-purple-light dark:text-purple-light">{`| ${date}`}</span>
+                    {company} <span className="text-purple-dark-light dark:text-purple-light">{`| ${date}`}</span>
                 </p>
                 <p className="mt-4 text-purple-dark-contrast dark:text-purple-light-contrast">{description}</p>
                 <div className="flex flex-wrap gap-2 mt-4">

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { ProjectCard } from '../components/ProjectCard';
 
 export const PortfolioSection = () => {
@@ -35,6 +35,12 @@ export const PortfolioSection = () => {
             // AND mode
             return selectedTags.every(tag => project.tags.includes(tag));
         });
+
+    const itemVariants = {
+        hidden: { opacity: 0, y: 12 },
+        show: { opacity: 1, y: 0 },
+        exit: { opacity: 0, y: -8 }
+    };
 
     return (
     <section id="portfolio" className="text-purple-dark dark:text-purple-light max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 bg-transparent">
@@ -75,32 +81,34 @@ export const PortfolioSection = () => {
                     );
                 })}
             </div>
-            <div className="flex flex-wrap gap-8">
-                {filteredProjects.map(project => {
-                    const expanded = expandedProject === project.id;
-                    return (
-                        <motion.div
-                            key={project.id}
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1, transition: { duration: 0.25 } }}
-                            exit={{ opacity: 0, transition: { duration: 0.15 } }}
-                            className={
-                                `w-full ${expanded ? 'sm:w-full' : 'sm:w-[calc(50%-1rem)]'} ` +
-                                'transition-[width] duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]'
-                            }
-                            style={{}}
-                        >
-                            <ProjectCard
-                                id={`project-${project.id}`}
-                                title={project.title}
-                                description={expanded ? project.description : ""}
-                                tags={project.tags}
-                                onClick={() => setExpandedProject(expanded ? null : project.id)}
-                                isExpanded={expanded}
-                            />
-                        </motion.div>
-                    );
-                })}
+            <div className={`grid w-full gap-8 ${expandedProject ? 'grid-cols-1' : 'grid-cols-1 sm:grid-cols-2'}`}>
+                <AnimatePresence mode="popLayout" initial={false}>
+                    {filteredProjects.map(project => {
+                        const expanded = expandedProject === project.id;
+                        const dimOthers = expandedProject && !expanded;
+                        return (
+                            <motion.div
+                                key={project.id}
+                                layout="position"
+                                variants={itemVariants}
+                                initial="hidden"
+                                animate="show"
+                                exit="exit"
+                                transition={{ duration: 0.28, ease: [0.4,0,0.2,1] }}
+                                className={`${dimOthers ? 'opacity-40 pointer-events-none' : 'opacity-100'} ${expanded ? 'col-span-1' : ''}`}
+                            >
+                                <ProjectCard
+                                    id={`project-${project.id}`}
+                                    title={project.title}
+                                    description={expanded ? project.description : ''}
+                                    tags={project.tags}
+                                    onClick={() => setExpandedProject(expanded ? null : project.id)}
+                                    isExpanded={expanded}
+                                />
+                            </motion.div>
+                        );
+                    })}
+                </AnimatePresence>
             </div>
         </section>
     );

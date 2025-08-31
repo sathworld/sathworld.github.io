@@ -8,7 +8,7 @@ export default {
         'purple-light': {
           DEFAULT: '#E0BBE4',
           dark: '#957DAD',
-          contrast: '#D291BC'
+          contrast: '#ffd2f0ff'
         },
         'purple-dark': {
           DEFAULT: '#2A1A40',

@@ -4,7 +4,7 @@ export const ProjectCard = ({ id, title, description, tags, onClick, isExpanded 
     return (
         <motion.button
             type="button"
-            className="text-left relative p-6 card-surface card-gradient-light dark:card-gradient-dark hover:shadow-lg min-w-[250px] flex flex-col interactive hover-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 rounded-xl"
+            className="text-left relative p-6 card-surface card-gradient-light dark:card-gradient-dark hover:shadow-lg min-w-[250px] w-full flex flex-col interactive hover-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 rounded-xl"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             whileHover={{ boxShadow: '0 6px 22px -4px rgba(0,0,0,0.25)' }}

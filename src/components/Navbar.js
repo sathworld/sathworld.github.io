@@ -62,7 +62,7 @@ export const Navbar = () => {
     }, [isMobileMenuOpen]);
 
     return (
-        <nav className="fixed w-full bg-purple-light dark:bg-purple-dark shadow-lg dark:shadow-xl dark:shadow-purple-dark z-50">
+        <nav className="fixed top-0 inset-x-0 w-full bg-purple-light/90 backdrop-blur-sm dark:bg-purple-dark/85 shadow-lg dark:shadow-xl dark:shadow-purple-dark z-[100] pointer-events-auto">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-16">
                     {/* Logo */}
