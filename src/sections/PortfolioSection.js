@@ -38,7 +38,7 @@ export const PortfolioSection = () => {
 
     return (
     <section id="portfolio" className="text-purple-dark dark:text-purple-light max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 bg-transparent">
-            <h1 className="text-3xl font-bold mb-12 text-center">My Projects</h1>
+            <h2 className="text-3xl font-bold mb-12 text-center" id="projects-heading">My Projects</h2>
             <div className="flex flex-wrap items-center gap-2 mb-4">
                 <button
                     type="button"
@@ -91,6 +91,7 @@ export const PortfolioSection = () => {
                             style={{}}
                         >
                             <ProjectCard
+                                id={`project-${project.id}`}
                                 title={project.title}
                                 description={expanded ? project.description : ""}
                                 tags={project.tags}

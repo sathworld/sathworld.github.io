@@ -55,7 +55,7 @@ export const ContactSection = () => {
 
     return (
     <section id="contact" className="min-h-[80vh] text-purple-dark dark:text-purple-light max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 bg-transparent">
-            <h1 className="text-3xl font-bold mb-12 text-center">Contact Me</h1>
+            <h2 className="text-3xl font-bold mb-12 text-center" id="contact-heading">Contact Me</h2>
             <div className="flex flex-col items-center gap-10 w-full max-w-5xl">
                 <div className="w-full flex flex-col sm:flex-row gap-8">
                     {/* Left: Large email button */}
@@ -64,14 +64,17 @@ export const ContactSection = () => {
                         onClick={handleCopy}
                         className="relative group flex-1 px-8 py-6 rounded-lg card-gradient-light dark:card-gradient-dark text-purple-dark dark:text-purple-light font-semibold shadow-md hover:shadow-lg transition-all duration-300 card-surface border border-purple-500/20 dark:border-purple-300/10 text-left"
                         aria-label="Copy my email address to your clipboard"
+                        aria-describedby="email-copy-help"
                         data-email={encoded}
                     >
                         <span className="select-none block text-base sm:text-2xl" aria-hidden="true">{disguisedVisible}</span>
                         <span className="block font-normal opacity-70 group-hover:opacity-90 transition-opacity mt-2">Click to copy real email</span>
                         <span
                             className={`pointer-events-none absolute -top-2 -right-2 text-s px-2 py-0.5 rounded-full bg-emerald-600 text-white shadow transition-opacity ${copied ? 'opacity-100' : 'opacity-0'}`}
-                        >Copied!</span>
+                            role="status" aria-live="polite"
+                        >{copied ? 'Copied!' : 'Copy'}</span>
                     </button>
+                    <p id="email-copy-help" className="sr-only">Button copies the full email address to the clipboard.</p>
                     {/* Right: Vertical stack (Resume + socials) */}
                     <div className="flex flex-row sm:flex-col sm:w-60 gap-4 items-stretch">
                         <SocialButtons size="sm" align="center" variant="outline" includeEmail={false} direction="column" />

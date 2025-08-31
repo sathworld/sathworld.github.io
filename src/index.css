@@ -8,6 +8,23 @@ html {
 
 
 @layer utilities {
+  /* Screen reader only utility */
+  .sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+  }
+  .not-sr-only { position: static; width:auto; height:auto; margin:0; overflow:visible; clip:auto; white-space:normal; }
+  /* Skip link */
+  .skip-link {
+    position: absolute; top:0; left:0; transform: translateY(-120%);
+    background: #4c1d95; color: #fff; padding: 0.75rem 1rem; z-index: 100;
+  }
+  .skip-link:focus { transform: translateY(0); outline: 2px solid #f0abfc; }
   .shadow-purple-dark {
       --tw-shadow-color: #6b21a8; /* Purple Color */
       --tw-shadow: var(--tw-shadow-colored);

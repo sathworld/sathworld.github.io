@@ -26,7 +26,7 @@ export const Navbar = () => {
         setIsMobileMenuOpen(false); // Close the mobile menu
     };
 
-    // Close mobile menu if clicked outside
+    // Close mobile menu if clicked outside and trap focus inside when open
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (
@@ -39,11 +39,27 @@ export const Navbar = () => {
 
         document.addEventListener('click', handleClickOutside);
 
+        const handleKeyDown = (e) => {
+            if (!isMobileMenuOpen) return;
+            if (e.key === 'Escape') { setIsMobileMenuOpen(false); menuButtonRef.current?.focus(); }
+            if (e.key === 'Tab') {
+                const focusables = mobileMenuRef.current?.querySelectorAll('a, button, [tabindex]:not([tabindex="-1"])');
+                if (!focusables || focusables.length === 0) return;
+                const list = Array.from(focusables);
+                const first = list[0];
+                const last = list[list.length - 1];
+                if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+                else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+            }
+        };
+        document.addEventListener('keydown', handleKeyDown);
+
         // Cleanup the event listener on unmount
         return () => {
             document.removeEventListener('click', handleClickOutside);
+            document.removeEventListener('keydown', handleKeyDown);
         };
-    }, []);
+    }, [isMobileMenuOpen]);
 
     return (
         <nav className="fixed w-full bg-purple-light dark:bg-purple-dark shadow-lg dark:shadow-xl dark:shadow-purple-dark z-50">
