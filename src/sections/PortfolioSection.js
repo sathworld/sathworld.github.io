@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { ProjectCard } from '../components/ProjectCard';
 
 export const PortfolioSection = () => {
@@ -37,7 +37,7 @@ export const PortfolioSection = () => {
         });
 
     return (
-    <section id="portfolio" className="min-h-screen text-purple-dark dark:text-purple-light max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 bg-transparent">
+    <section id="portfolio" className="text-purple-dark dark:text-purple-light max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 bg-transparent">
             <h1 className="text-3xl font-bold mb-12 text-center">My Projects</h1>
             <div className="flex flex-wrap items-center gap-2 mb-4">
                 <button

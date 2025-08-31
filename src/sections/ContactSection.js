@@ -54,7 +54,7 @@ export const ContactSection = () => {
     const disguisedVisible = 'dgazizul [at] uwaterloo [dot] ca';
 
     return (
-    <section id="contact" className="min-h-screen text-purple-dark dark:text-purple-light max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 bg-transparent">
+    <section id="contact" className="min-h-[80vh] text-purple-dark dark:text-purple-light max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 bg-transparent">
             <h1 className="text-3xl font-bold mb-12 text-center">Contact Me</h1>
             <div className="flex flex-col items-center gap-10 w-full max-w-5xl">
                 <div className="w-full flex flex-col sm:flex-row gap-8">

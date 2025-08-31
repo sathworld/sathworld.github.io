@@ -4,7 +4,7 @@ export const SkillsSection = () => {
     const { skills } = resumeData;
 
     return (
-    <section id="skills" className="min-h-screen text-purple-dark dark:text-purple-light max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 bg-transparent">
+    <section id="skills" className="text-purple-dark dark:text-purple-light max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 bg-transparent">
             <h1 className="text-3xl font-bold mb-12 text-center">Technical Skills</h1>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                 {skills.map((skillCategory, index) => (
