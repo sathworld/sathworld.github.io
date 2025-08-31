@@ -7,7 +7,8 @@ import { HorizonParagraphs } from './HorizonParagraphs';
 // import { useControls } from 'leva';
 
 const ThreeBackground = () => {
-  const { isDarkMode } = useTheme();
+  const { isDarkMode, showThree } = useTheme();
+  if (!showThree) return null;
   // const { offsetX, offsetY, offsetZ, intensity, smoothness, lookAtX, lookAtY, lookAtZ } = useControls({
   //   offsetX: { value: 3, min: -20, max: 20, step: 0.1 },
   //   offsetY: { value: -5, min: -20, max: 20, step: 0.1 },

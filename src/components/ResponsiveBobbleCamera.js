@@ -1,5 +1,6 @@
 import { useFrame, useThree } from "@react-three/fiber";
 import { useEffect, useState, useRef } from "react";
+import { useTheme } from "../utils/theme";
 
 export function ResponsiveBobbleCamera({ 
   offsetX = 0, 
@@ -14,6 +15,8 @@ export function ResponsiveBobbleCamera({
   const [scrollY, setScrollY] = useState(0);
   const [fov, setFov] = useState(50);
   const { camera } = useThree();
+  const { showThree } = useTheme();
+  const [reducedMotion, setReducedMotion] = useState(() => window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
   const initialCameraState = useRef(null);
   
   useEffect(() => {
@@ -86,8 +89,9 @@ export function ResponsiveBobbleCamera({
     
     const currentScrollY = scrollY;
     
-    const bobbleX = Math.sin(currentScrollY * 0.0008) * intensity;
-    const bobbleY = Math.cos(currentScrollY * 0.0008) * intensity * 0.5;
+  const disableMotion = reducedMotion || !showThree;
+  const bobbleX = disableMotion ? 0 : Math.sin(currentScrollY * 0.0008) * intensity;
+  const bobbleY = disableMotion ? 0 : Math.cos(currentScrollY * 0.0008) * intensity * 0.5;
     
     const targetX = initialCameraState.current.position.x + offsetX + bobbleX;
     const targetY = initialCameraState.current.position.y + offsetY + bobbleY - currentScrollY/8000;

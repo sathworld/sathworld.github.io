@@ -29,21 +29,12 @@ export const App = () => {
 export default App;
 
 
-// TODO: Change Fonts
 // TODO: Add a Footer
 // TODO: Add a 404 Page
-// TODO: Loading spinner (no)
 // TODO: Add a blog section
 // TODO: Add a resume section
 // TODO: Add a skills section
-// TODO: Add a timeline section (no)
-// TODO: Add a testimonials section (no)
-// TODO: Add a pricing section (no)
-// TODO: Add a FAQ section (no)
-// TODO: Add a newsletter section (no)
 // TODO: Add an inteests/hobbies section (LOW PRIORITY)
-// TODO: Add a social media section (LOW PRIORITY)
 // TODO: Add pictures to project backgrounds
 // TODO: Add project information, description, tags, links, and pictures
 // TODO: Design Team involvement
-// TODO: Play around with background colors

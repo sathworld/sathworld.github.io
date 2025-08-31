@@ -1,9 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
 import { MoonIcon, SunIcon, Bars3Icon } from '@heroicons/react/24/solid';
+import { CubeIcon, CubeTransparentIcon } from '@heroicons/react/24/outline';
 import { useTheme } from '../utils/theme';
 
 export const Navbar = () => {
-    const { isDarkMode, setIsDarkMode } = useTheme();
+    const { isDarkMode, setIsDarkMode, showThree, setShowThree } = useTheme();
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // State for mobile menu
     const mobileMenuRef = useRef(null); // Reference for mobile menu
     const menuButtonRef = useRef(null); // Reference for the hamburger menu button
@@ -68,10 +69,26 @@ export const Navbar = () => {
 
                     {/* Theme Switcher and Hamburger (Right-aligned) */}
                     <div className="flex items-center ml-auto space-x-4">
+                        {/* 3D Toggle */}
+                        <button
+                            onClick={() => setShowThree(v => !v)}
+                            aria-pressed={showThree}
+                            className="p-2 rounded-lg bg-purple-light-contrast dark:bg-purple-dark-contrast text-purple-dark dark:text-purple-light hover:bg-purple-light dark:hover:bg-purple-dark transition-colors duration-200"
+                            title={showThree ? 'Disable 3D background' : 'Enable 3D background'}
+                        >
+                            {showThree ? (
+                                <CubeTransparentIcon className="h-6 w-6" />
+                            ) : (
+                                <CubeIcon className="h-6 w-6" />
+                            )}
+                            <span className="sr-only">Toggle 3D background</span>
+                        </button>
                         {/* Theme Switcher */}
                         <button
                             onClick={toggleTheme}
                             className="p-2 rounded-lg bg-purple-light-contrast dark:bg-purple-dark-contrast text-purple-dark dark:text-purple-light hover:bg-purple-light dark:hover:bg-purple-dark transition-colors duration-200"
+                            title={isDarkMode ? 'Switch to light theme' : 'Switch to dark theme'}
+                            aria-label={isDarkMode ? 'Switch to light theme' : 'Switch to dark theme'}
                         >
                             {isDarkMode ? (
                                 <SunIcon className="h-6 w-6" />

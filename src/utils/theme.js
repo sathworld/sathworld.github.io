@@ -3,28 +3,45 @@ import { createContext, useContext, useState, useEffect } from 'react';
 const ThemeContext = createContext();
 
 export function ThemeProvider({ children }) {
-    const [isDarkMode, setIsDarkMode] = useState(
-        () => window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
-    );
+    const prefersDark = () => window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const prefersReducedMotion = () => window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const [isDarkMode, setIsDarkMode] = useState(() => prefersDark());
+    const [showThree, setShowThree] = useState(() => {
+        try {
+            const stored = localStorage.getItem('showThree');
+            if (stored !== null) return stored === 'true';
+        } catch(_) {}
+        // Disable 3D by default if user prefers reduced motion.
+        return !prefersReducedMotion();
+    });
 
     useEffect(() => {
-        const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-        const handleChange = (e) => setIsDarkMode(e.matches);
+        const darkMQ = window.matchMedia('(prefers-color-scheme: dark)');
+        const motionMQ = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-        mediaQuery.addEventListener('change', handleChange);
+        const handleDark = (e) => setIsDarkMode(e.matches);
+        const handleMotion = (e) => {
+            // Auto-disable 3D if user toggles reduced motion on and they haven't explicitly enabled it after.
+            if (e.matches) setShowThree(false);
+        };
+        darkMQ.addEventListener('change', handleDark);
+        motionMQ.addEventListener('change', handleMotion);
 
-        // Set the class on the root element
-        if (isDarkMode) {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-        }
+        if (isDarkMode) document.documentElement.classList.add('dark');
+        else document.documentElement.classList.remove('dark');
 
-        return () => mediaQuery.removeEventListener('change', handleChange);
+        return () => {
+            darkMQ.removeEventListener('change', handleDark);
+            motionMQ.removeEventListener('change', handleMotion);
+        };
     }, [isDarkMode]);
 
+    useEffect(() => {
+        try { localStorage.setItem('showThree', String(showThree)); } catch(_) {}
+    }, [showThree]);
+
     return (
-        <ThemeContext.Provider value={{ isDarkMode, setIsDarkMode }}>
+        <ThemeContext.Provider value={{ isDarkMode, setIsDarkMode, showThree, setShowThree }}>
             {children}
         </ThemeContext.Provider>
     );
