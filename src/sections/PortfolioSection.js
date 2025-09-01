@@ -109,7 +109,7 @@ export const PortfolioSection = () => {
                                 animate="show"
                                 exit="exit"
                                 transition={{ duration: 0.28, ease: [0.4,0,0.2,1] }}
-                                className={`${dimOthers ? 'opacity-40 pointer-events-none' : 'opacity-100'} ${expanded ? 'col-span-1' : ''}`}
+                                className={`${dimOthers ? 'opacity-40 hover:opacity-100 transition-opacity' : 'opacity-100'} ${expanded ? 'col-span-1' : ''}`}
                             >
                                 <ProjectCard
                                     id={`project-${project.id}`}
