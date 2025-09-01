@@ -5,6 +5,7 @@ import { HomeSection } from "./sections/HomeSection";
 import { PortfolioSection } from "./sections/PortfolioSection";
 import { ContactSection } from "./sections/ContactSection";
 import { ResumeSection } from './sections/ResumeSection';
+import { EducationSection } from './sections/EducationSection';
 import { SkillsSection } from './sections/SkillsSection';
 import ThreeBackground from './components/ThreeBackground';
 
@@ -19,6 +20,7 @@ export const App = () => {
         <div className="relative z-10 pt-16" role="main" id="main-content" aria-labelledby="site-title">
           <HomeSection />
           <PortfolioSection />
+          <EducationSection />
           <ResumeSection />
           <SkillsSection />
           <ContactSection />

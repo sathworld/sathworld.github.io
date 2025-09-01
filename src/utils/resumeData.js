@@ -11,6 +11,19 @@ export const resumeData = {
       "First in Class (Winter 2024, 2A)",
       "First in Class (Fall 2024, 2B)",
     ],
+    courses: [
+      // Canonical category set: Analog Design, Digital Design, Comp Arch, Device Physics, RF, EM, Embedded, Signal Processing
+      { code: 'ECE 231', title: 'Semiconductor Physics and Devices', categories: ['Device Physics', 'EM'] },
+      { code: 'ECE 222', title: 'Digital Computers', categories: ['Comp Arch', 'Embedded'] },
+      { code: 'ECE 340', title: 'Electronic Circuits 2', categories: ['Analog Design', 'Device Physics'] },
+      { code: 'ECE 331', title: 'Electronic Devices', categories: ['Device Physics', 'EM'] },
+      { code: 'ECE 493', title: 'On-Chip Interconnect (Network-on-Chip)', categories: ['Comp Arch', 'Digital Design'] },
+      { code: 'ECE 493', title: 'Computer Arithmetic Hardware', categories: ['Comp Arch', 'Digital Design'] },
+      { code: 'ECE 327', title: 'Digital Hardware Systems', categories: ['Digital Design', 'Embedded'] },
+      { code: 'ECE 320', title: 'Computer Architecture', categories: ['Comp Arch', 'Digital Design'] },
+      { code: 'ECE 313', title: 'Digital Signal Processing', categories: ['Signal Processing', 'Digital Design'] },
+      { code: 'ECE 373', title: 'Radio Frequency and Microwave Circuits', categories: ['RF', 'EM', 'Analog Design'] },
+    ],
   },
   skills: [
     {
