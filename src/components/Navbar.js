@@ -9,9 +9,26 @@ export const Navbar = () => {
     const mobileMenuRef = useRef(null); // Reference for mobile menu
     const menuButtonRef = useRef(null); // Reference for the hamburger menu button
 
-    const toggleTheme = () => {
-        setIsDarkMode(!isDarkMode);
-        document.documentElement.classList.toggle('dark', !isDarkMode);
+    // Prevent sticky active / focus state on touch devices without risking null event reuse
+    const safeBlur = (e) => {
+        if (!e) return;
+        const target = e.currentTarget; // capture before event is released
+        if (target && typeof target.blur === 'function') {
+            setTimeout(() => target.blur(), 0); // defer to let state update first
+        }
+    };
+
+    const toggleTheme = (e) => {
+        setIsDarkMode(prev => {
+            const next = !prev;
+            document.documentElement.classList.toggle('dark', next);
+            return next;
+        });
+        safeBlur(e);
+    };
+    const toggleThree = (e) => {
+        setShowThree(v => !v);
+        safeBlur(e);
     };
 
     // Store links in one place
@@ -87,9 +104,9 @@ export const Navbar = () => {
                     <div className="flex items-center ml-auto space-x-4">
                         {/* 3D Toggle */}
                         <button
-                            onClick={() => setShowThree(v => !v)}
+                            onClick={toggleThree}
                             aria-pressed={showThree}
-                            className="p-2 rounded-lg bg-purple-light-contrast dark:bg-purple-dark-contrast text-purple-dark dark:text-purple-light hover:bg-purple-light dark:hover:bg-purple-dark transition-colors duration-200"
+                            className="p-2 rounded-lg bg-purple-light-contrast dark:bg-purple-dark-contrast text-purple-dark dark:text-purple-light md:hover:bg-purple-light md:dark:hover:bg-purple-dark transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70"
                             title={showThree ? 'Disable 3D background' : 'Enable 3D background'}
                         >
                             {showThree ? (
@@ -102,7 +119,7 @@ export const Navbar = () => {
                         {/* Theme Switcher */}
                         <button
                             onClick={toggleTheme}
-                            className="p-2 rounded-lg bg-purple-light-contrast dark:bg-purple-dark-contrast text-purple-dark dark:text-purple-light hover:bg-purple-light dark:hover:bg-purple-dark transition-colors duration-200"
+                            className="p-2 rounded-lg bg-purple-light-contrast dark:bg-purple-dark-contrast text-purple-dark dark:text-purple-light md:hover:bg-purple-light md:dark:hover:bg-purple-dark transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70"
                             title={isDarkMode ? 'Switch to light theme' : 'Switch to dark theme'}
                             aria-label={isDarkMode ? 'Switch to light theme' : 'Switch to dark theme'}
                         >
@@ -116,9 +133,11 @@ export const Navbar = () => {
                         {/* Hamburger Icon for Mobile (Visible only on small screens) */}
                         <button 
                             ref={menuButtonRef} // Add ref to hamburger button
-                            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} 
+                            onClick={(e) => { setIsMobileMenuOpen(m => !m); safeBlur(e); }} 
                             className={`md:hidden p-2 rounded-lg bg-purple-light-contrast dark:bg-purple-dark-contrast
-                            text-purple-dark dark:text-purple-light hover:bg-purple-light dark:hover:bg-purple-dark focus:outline-none`}
+                            text-purple-dark dark:text-purple-light md:hover:bg-purple-light md:dark:hover:bg-purple-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70`}
+                            aria-expanded={isMobileMenuOpen}
+                            aria-controls="mobile-nav"
                         >
                             {/* Hamburger Icon */}
                             <Bars3Icon className={`h-6 w-6 ${isMobileMenuOpen ? 'text-purple-dark dark:text-purple-light' : 'text-purple-dark dark:text-purple-light'}`} />
@@ -134,7 +153,7 @@ export const Navbar = () => {
                 ${isMobileMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'}
                 `}
             >
-                <div className={`transform transition-transform duration-300 ease-in-out 
+                <div id="mobile-nav" className={`transform transition-transform duration-300 ease-in-out 
                     ${isMobileMenuOpen ? 'translate-y-0' : '-translate-y-10'}
                     pl-4`} // Added padding-left (pl-4) here for whitespace on the left
                 >
@@ -142,8 +161,8 @@ export const Navbar = () => {
                         <a 
                             key={item.href} 
                             href={item.href} 
-                            className="block text-purple-dark dark:text-purple-light py-2"
-                            onClick={handleLinkClick} // Close menu when a link is clicked
+                            className="block text-purple-dark dark:text-purple-light py-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70"
+                            onClick={(e) => { handleLinkClick(); safeBlur(e); }} // Close menu and blur
                         >
                             {item.name}
                         </a>

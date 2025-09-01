@@ -6,6 +6,12 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Remove persistent tap highlight on mobile to avoid stuck pressed visuals */
+html, body {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+
 
 @layer utilities {
   /* Screen reader only utility */

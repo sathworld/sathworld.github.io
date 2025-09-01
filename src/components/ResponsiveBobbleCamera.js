@@ -94,7 +94,7 @@ export function ResponsiveBobbleCamera({
   const bobbleY = disableMotion ? 0 : Math.cos(currentScrollY * 0.0008) * intensity * 0.5;
     
     const targetX = initialCameraState.current.position.x + offsetX + bobbleX;
-    const targetY = initialCameraState.current.position.y + offsetY + bobbleY - currentScrollY/8000;
+    const targetY = initialCameraState.current.position.y + offsetY + bobbleY - (disableMotion ? 0 : currentScrollY / 8000);
     const targetZ = initialCameraState.current.position.z + offsetZ;
     
     camera.position.x += (targetX - camera.position.x) * smoothness;
