@@ -91,7 +91,6 @@ export const resumeData = {
   projects: [
     {
       title: "Custom 8-bit Computer Tape-Out",
-      technologies: "Verilog, Python, Verilator, cocotb",
       duration: "September 2024 – December 2024",
       tags: [
         'Verilog', 'Python', 'Verilator', 'cocotb', 'RISC', 'RTL', 'ALU', 'Tapeout', 'SoC', 'EDA'
@@ -115,7 +114,6 @@ export const resumeData = {
     },
     {
       title: "Wearable Telehealth Device",
-      technologies: "C++, MATLAB, ThingSpeak, Blynk API",
       duration: "August 2022 – January 2023",
       tags: [
         'C++', 'MATLAB', 'ThingSpeak', 'Blynk', 'ESP8266', 'ECG', 'Signal Processing', 'IoT', 'Wearable'

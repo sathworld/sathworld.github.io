@@ -93,7 +93,6 @@ const experience = data.experience ? `
 function renderProjects(pArr) {
   if (!Array.isArray(pArr)) return '';
   return pArr.map(p=>{
-    const techLine = p.technologies ? `<p class="tech"><strong>Tech:</strong> ${esc(p.technologies)}</p>` : '';
     const tagsLine = Array.isArray(p.tags) && p.tags.length ? `<p class="tags"><strong>Tags:</strong> ${p.tags.map(t=>esc(t)).join(', ')}</p>` : '';
     const linksLine = Array.isArray(p.links) && p.links.length ? `<p class="links">` + p.links.map(l=>`<a href="${escAttr(l.url)}" rel="noopener noreferrer">${esc(l.label||'Link')}</a>`).join(' · ') + `</p>` : '';
     const filesLine = Array.isArray(p.files) && p.files.length
@@ -107,7 +106,6 @@ function renderProjects(pArr) {
     return `<article class="project-item">
   <h3>${esc(p.title)}</h3>
   <p class="meta">${esc(p.duration||'')}</p>
-  ${techLine}
   ${tagsLine}
   ${linksLine}
   ${filesLine}
@@ -188,9 +186,11 @@ const generated = `<!-- AUTO-GENERATED: noscript fallback -->
     @media (prefers-color-scheme: dark) { .exp-item, .project-item { background:rgba(24,24,27,0.6); } }
     .exp-item h3, .project-item h3 { margin:0 0 .35rem; font-size:1.05rem; }
     .meta { font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--fg-sub); margin:.1rem 0 .6rem; }
-  .tech, .tags, .links, .files { font-size:.75rem; margin:.25rem 0; }
+  .tech { font-size:.74rem; margin:.25rem 0; }
+  .tags, .files { font-size:.85rem; margin:.3rem 0; }
+  .links { font-size:.75rem; margin:.25rem 0; }
     .tags strong, .tech strong { text-transform:uppercase; font-size:.68rem; letter-spacing:.08em; color:var(--fg-sub); margin-right:.35rem; }
-  .links a, .files a { display:inline-block; padding:.35rem .65rem; border:1px solid var(--border); border-radius:8px; font-size:.65rem; background:var(--bg-chip); color:var(--fg); line-height:1.1; margin:.2rem .25rem .2rem 0; }
+  .links a, .files a { display:inline-block; padding:.42rem .7rem .4rem; border:1px solid var(--border); border-radius:10px; font-size:.75rem; background:var(--bg-chip); color:var(--fg); line-height:1.05; margin:.25rem .35rem .25rem 0; letter-spacing:.25px; }
   .links a:hover, .files a:hover { background:var(--accent); color:var(--accent-fg); border-color:var(--accent); text-decoration:none; }
     .images { margin:.4rem 0 .6rem; display:flex; flex-wrap:wrap; gap:.4rem; }
     .images img { border:1px solid var(--border); border-radius:10px; background:#fff; padding:.35rem; }
@@ -201,7 +201,7 @@ const generated = `<!-- AUTO-GENERATED: noscript fallback -->
     .courses h3 { font-size:.85rem; text-transform:uppercase; letter-spacing:.06em; font-weight:600; margin:1.4rem 0 .4rem; color:var(--fg-sub); }
     .courses ul { list-style:none; margin:0; padding:0; }
     .courses li { display:flex; gap:1rem; align-items:center; padding:4px 0; font-size:.9rem; line-height:1.3; }
-    .courses li strong { display:inline-flex; align-items:center; justify-content:center; min-width:78px; text-align:center; font-variant-numeric:tabular-nums; font-size:.95rem; background:var(--bg-chip); padding:.38rem .6rem; border-radius:999px; letter-spacing:.5px; }
+    .courses li strong { display:inline-flex; align-items:center; justify-content:center; min-width:78px; text-align:center; font-variant-numeric:tabular-nums; font-size:.85rem; background:var(--bg-chip); padding:.38rem .6rem; border-radius:999px; letter-spacing:.5px; }
     footer { border-top:1px solid var(--border); padding-top:1.25rem; }
     @media print { .noscript-fallback { box-shadow:none; background:#fff; } .exp-item, .project-item { break-inside:avoid; page-break-inside:avoid; } a { color:#000; } }
   </style>
