@@ -1,15 +1,26 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ProjectCard } from '../components/ProjectCard';
+import { resumeData } from '../utils/resumeData';
 
 export const PortfolioSection = () => {
-    const projects = [
-        { id: 1, title: "EV PCB Design", tags: ["PCB", "High Voltage"], description: "Designed a high-voltage PCB for an electric vehicle." },
-        { id: 2, title: "FPGA Development", tags: ["HDL", "Digital Logic"], description: "Implemented a hardware-accelerated algorithm using VHDL." },
-        { id: 3, title: "Embedded Systems", tags: ["Firmware", "IoT"], description: "Developed firmware for an IoT device with real-time constraints." }
-    ];
+    // Normalize and transform resumeData.projects into UI-friendly objects.
+    const projects = useMemo(() => {
+        return (resumeData?.projects || []).map((p, idx) => {
+            const providedTags = Array.isArray(p.tags) ? p.tags.filter(Boolean) : [];
+            return {
+                id: idx + 1,
+                title: p.title,
+                duration: p.duration,
+                description: p.summary || (Array.isArray(p.description) ? p.description[0] : ''),
+                details: p.description || [],
+                tags: providedTags,
+            };
+        });
+    }, []);
 
-    const tags = ["PCB", "High Voltage", "HDL", "Digital Logic", "Firmware", "IoT"]; // Core selectable tags
+    // Collect unique tag universe.
+    const tags = useMemo(() => Array.from(new Set(projects.flatMap(p => p.tags))).sort(), [projects]);
     const [selectedTags, setSelectedTags] = useState([]); // multi-select
     const [filterMode, setFilterMode] = useState('OR'); // OR | AND
     const [expandedProject, setExpandedProject] = useState(null);
@@ -45,7 +56,7 @@ export const PortfolioSection = () => {
     return (
     <section id="portfolio" className="text-purple-dark dark:text-purple-light max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 bg-transparent">
             <h2 className="text-3xl font-bold mb-12 text-center" id="projects-heading">My Projects</h2>
-            <div className="flex flex-wrap items-center gap-2 mb-4">
+            <div className="flex flex-wrap items-center gap-2 mb-4" aria-label="Project tag filters">
                 <button
                     type="button"
                     onClick={toggleMode}
@@ -81,7 +92,7 @@ export const PortfolioSection = () => {
                     );
                 })}
             </div>
-            <div className={`grid w-full gap-8 ${expandedProject ? 'grid-cols-1' : 'grid-cols-1 sm:grid-cols-2'}`}>
+            <div className={`grid w-full gap-8 ${expandedProject ? 'grid-cols-1' : 'grid-cols-1 sm:grid-cols-2'}`} aria-live="polite" aria-busy={false}>
                 <AnimatePresence mode="popLayout" initial={false}>
                     {filteredProjects.map(project => {
                         const expanded = expandedProject === project.id;
@@ -100,7 +111,9 @@ export const PortfolioSection = () => {
                                 <ProjectCard
                                     id={`project-${project.id}`}
                                     title={project.title}
-                                    description={expanded ? project.description : ''}
+                                    duration={project.duration}
+                                    description={expanded ? project.description : project.description?.slice(0, 140)}
+                                    details={project.details}
                                     tags={project.tags}
                                     onClick={() => setExpandedProject(expanded ? null : project.id)}
                                     isExpanded={expanded}

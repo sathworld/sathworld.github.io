@@ -37,11 +37,14 @@ export const EducationSection = () => {
       {edu ? (
         <div className="mb-12">
           <div className="p-6 rounded-xl card-surface card-gradient-light dark:card-gradient-dark border border-purple-dark/10 dark:border-purple-light/10 shadow-sm hover:shadow-md transition-shadow">
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
-              <h3 className="text-xl font-semibold">{edu.university}</h3>
-              <p className="text-base text-purple-dark-contrast dark:text-purple-light-contrast">{edu.location} • {edu.duration}</p>
+            <div className="flex flex-col md:flex-row md:justify-between gap-1 md:items-start">
+              <h3 className="text-xl font-semibold leading-snug">{edu.university}</h3>
+              <div className="flex flex-col md:items-end text-left md:text-right">
+                <p className="text-sm lg:text-base text-purple-dark-contrast dark:text-purple-light-contrast mb-1 leading-snug">{edu.location}</p>
+                <p className="text-sm uppercase tracking-wide text-purple-dark/70 dark:text-purple-light/60 leading-snug">{edu.duration}</p>
+              </div>
             </div>
-            <p className="mt-2 text-sm lg:text-base text-purple-dark-contrast dark:text-purple-light-contrast font-medium">{edu.degree} <span className="opacity-80 font-normal">(GPA: {edu.gpa})</span></p>
+            <p className="mt-1 lg:-mt-5 text-sm lg:text-base text-purple-dark-contrast dark:text-purple-light-contrast font-medium leading-snug transition-all">{edu.degree} <span className="opacity-80 font-normal">(GPA: {edu.gpa})</span></p>
             {edu.awards?.length > 0 && (
               <div className="mt-5">
                 <h4 className="text-sm uppercase tracking-wide font-semibold mb-2 text-purple-dark/80 dark:text-purple-light/80">Awards & Scholarships</h4>

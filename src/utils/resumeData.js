@@ -93,6 +93,9 @@ export const resumeData = {
       title: "Custom 8-bit Computer Tape-Out",
       technologies: "Verilog, Python, Verilator, cocotb",
       duration: "September 2024 – December 2024",
+      tags: [
+        'Verilog', 'Python', 'Verilator', 'cocotb', 'RISC', 'RTL', 'ALU', 'Tapeout', 'SoC', 'EDA'
+      ],
       description: [
         "Architected custom 8-bit RISC ISA with 16 instructions to balance datapath simplicity and opcode density.",
         "Designed and verified pipelined ALU and register file blocks in Verilog, simulated with Verilator and cocotb.",
@@ -104,6 +107,9 @@ export const resumeData = {
       title: "Wearable Telehealth Device",
       technologies: "C++, MATLAB, ThingSpeak, Blynk API",
       duration: "August 2022 – January 2023",
+      tags: [
+        'C++', 'MATLAB', 'ThingSpeak', 'Blynk', 'ESP8266', 'ECG', 'Signal Processing', 'IoT', 'Wearable'
+      ],
       description: [
         "Built a WiFi-enabled wearable using ESP8266 and 5 I2C sensors for biometric monitoring.",
         "Implemented ECG signal processing in MATLAB, achieving >95% arrhythmia classification accuracy.",
