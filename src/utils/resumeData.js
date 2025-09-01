@@ -22,6 +22,7 @@ export const resumeData = {
       { code: 'ECE 327', title: 'Digital Hardware Systems', categories: ['Digital Design', 'Embedded'] },
       { code: 'ECE 320', title: 'Computer Architecture', categories: ['Comp Arch', 'Digital Design'] },
       { code: 'ECE 313', title: 'Digital Signal Processing', categories: ['Signal Processing', 'Digital Design'] },
+      { code: 'ECE 318', title: 'Communication Systems', categories: ['Signal Processing', 'Analog Design'] },
       { code: 'ECE 373', title: 'Radio Frequency and Microwave Circuits', categories: ['RF', 'EM', 'Analog Design'] },
     ],
   },

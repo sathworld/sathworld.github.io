@@ -70,7 +70,7 @@ export const ContactSection = () => {
                         <span className="select-none block text-base sm:text-2xl" aria-hidden="true">{disguisedVisible}</span>
                         <span className="block font-normal opacity-70 group-hover:opacity-90 transition-opacity mt-2">Click to copy real email</span>
                         <span
-                            className={`pointer-events-none absolute -top-2 -right-2 text-s px-2 py-0.5 rounded-full bg-emerald-600 text-white shadow transition-opacity ${copied ? 'opacity-100' : 'opacity-0'}`}
+                            className={`pointer-events-none absolute -top-2 -right-2 text-base px-2 py-0.5 rounded-full bg-emerald-600 text-white shadow transition-opacity ${copied ? 'opacity-100' : 'opacity-0'}`}
                             role="status" aria-live="polite"
                         >{copied ? 'Copied!' : 'Copy'}</span>
                     </button>

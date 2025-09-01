@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { resumeData } from '../utils/resumeData';
 
 export const EducationSection = () => {
@@ -38,19 +39,18 @@ export const EducationSection = () => {
           <div className="p-6 rounded-xl card-surface card-gradient-light dark:card-gradient-dark border border-purple-dark/10 dark:border-purple-light/10 shadow-sm hover:shadow-md transition-shadow">
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
               <h3 className="text-xl font-semibold">{edu.university}</h3>
-              <p className="text-sm text-purple-dark-contrast dark:text-purple-light-contrast">{edu.location} • {edu.duration}</p>
+              <p className="text-base text-purple-dark-contrast dark:text-purple-light-contrast">{edu.location} • {edu.duration}</p>
             </div>
             <p className="mt-2 text-sm lg:text-base text-purple-dark-contrast dark:text-purple-light-contrast font-medium">{edu.degree} <span className="opacity-80 font-normal">(GPA: {edu.gpa})</span></p>
             {edu.awards?.length > 0 && (
               <div className="mt-5">
                 <h4 className="text-sm uppercase tracking-wide font-semibold mb-2 text-purple-dark/80 dark:text-purple-light/80">Awards & Scholarships</h4>
-                <ul className="flex flex-wrap gap-3 text-xs lg:text-sm">
+                <ul className="flex flex-wrap gap-3 text-sm lg:text-sm">
                   {edu.awards.map((a,i)=>(
                     <li
                       key={i}
                       className="flex items-center gap-2 px-4 py-2 rounded-full bg-purple-dark/5 dark:bg-purple-light/10 border border-purple-dark/15 dark:border-purple-light/15 text-purple-dark-contrast dark:text-purple-light-contrast shadow-sm backdrop-blur-[2px] hover:bg-purple-dark/10 dark:hover:bg-purple-light/15 transition-colors"
                     >
-                      <span aria-hidden="true" className="w-1.5 h-1.5 rounded-full bg-purple-dark dark:bg-purple-light" />
                       <span className="leading-snug">{a}</span>
                     </li>
                   ))}
@@ -98,25 +98,32 @@ export const EducationSection = () => {
           </div>
 
           <ul className="grid gap-6 sm:grid-cols-2" aria-live="polite">
-            {filteredCourses.map((c,i)=>(
-              <li key={i} className="group relative p-5 rounded-xl card-surface card-gradient-light dark:card-gradient-dark border border-purple-dark/10 dark:border-purple-light/10 shadow-sm hover:shadow-lg transition-all">
-                <div className="flex items-start justify-between gap-3 mb-3">
-                  <span className="font-semibold text-purple-dark dark:text-purple-light tracking-wide text-base lg:text-lg">{c.code}</span>
-                  <div className="flex flex-wrap gap-2 justify-end">
-                    {(c.categories||[]).map(cat => (
-                      <span
-                        key={cat}
-                        className="px-3 py-1 rounded-full text-xs font-medium bg-purple-light-contrast dark:bg-purple-dark-contrast text-purple-dark dark:text-purple-light border border-purple-dark/10 dark:border-purple-light/10 select-none"
-                      >{cat}</span>
-                    ))}
+            <AnimatePresence mode="popLayout" initial={false}>
+              {filteredCourses.map((c,i)=>(
+                <motion.li
+                  key={c.code + i}
+                  layout="position"
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -12 }}
+                  transition={{ duration: 0.28, ease: [0.4,0,0.2,1] }}
+                  className="group relative p-5 rounded-xl card-surface card-gradient-light dark:card-gradient-dark border border-purple-dark/10 dark:border-purple-light/10 shadow-sm hover:shadow-lg transition-all"
+                >
+                  <div className="flex items-start justify-between gap-3 mb-3">
+                    <span className="font-semibold text-purple-dark dark:text-purple-light tracking-wide text-base lg:text-lg">{c.code}</span>
+                    <div className="flex flex-wrap gap-2 justify-end">
+                      {(c.categories||[]).map(cat => (
+                        <span
+                          key={cat}
+                          className="px-3 py-1 rounded-full text-sm font-medium bg-purple-light-contrast dark:bg-purple-dark-contrast text-purple-dark dark:text-purple-light border border-purple-dark/10 dark:border-purple-light/10 select-none"
+                        >{cat}</span>
+                      ))}
+                    </div>
                   </div>
-                </div>
-                <p className="text-base lg:text-lg font-medium text-purple-dark-contrast dark:text-purple-light-contrast leading-snug">{c.title}</p>
-              </li>
-            ))}
-            {filteredCourses.length === 0 && (
-              <li className="col-span-full text-center text-purple-dark-contrast/70 dark:text-purple-light-contrast/70 py-10 rounded-xl border border-dashed border-purple-dark/20 dark:border-purple-light/20">No courses match selected filters.</li>
-            )}
+                  <p className="text-base lg:text-lg font-medium text-purple-dark-contrast dark:text-purple-light-contrast leading-snug">{c.title}</p>
+                </motion.li>
+              ))}
+            </AnimatePresence>
           </ul>
         </div>
       )}
