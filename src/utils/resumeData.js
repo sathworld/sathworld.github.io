@@ -96,6 +96,16 @@ export const resumeData = {
       tags: [
         'Verilog', 'Python', 'Verilator', 'cocotb', 'RISC', 'RTL', 'ALU', 'Tapeout', 'SoC', 'EDA'
       ],
+      images: [
+        '/logos/uwasic.webp'
+      ],
+      links: [
+        { label: 'Repository', url: 'https://github.com/example/8bit-tapeout' },
+        { label: 'Architecture Notes', url: 'https://example.com/8bit-notes' }
+      ],
+      files: [
+        { label: 'Timing Report (PDF)', url: '/resumes/Damir Gazizullin - Electrical.pdf', type: 'pdf' }
+      ],
       description: [
         "Architected custom 8-bit RISC ISA with 16 instructions to balance datapath simplicity and opcode density.",
         "Designed and verified pipelined ALU and register file blocks in Verilog, simulated with Verilator and cocotb.",
@@ -109,6 +119,15 @@ export const resumeData = {
       duration: "August 2022 – January 2023",
       tags: [
         'C++', 'MATLAB', 'ThingSpeak', 'Blynk', 'ESP8266', 'ECG', 'Signal Processing', 'IoT', 'Wearable'
+      ],
+      images: [
+        '/logos/electrium-mobility.webp'
+      ],
+      links: [
+        { label: 'Cloud Dashboard', url: 'https://example.com/telehealth-dashboard' }
+      ],
+      files: [
+        { label: 'Signal Processing Report (PDF)', url: '/resumes/Damir Gazizullin - Embedded.pdf', type: 'pdf' }
       ],
       description: [
         "Built a WiFi-enabled wearable using ESP8266 and 5 I2C sensors for biometric monitoring.",

@@ -15,6 +15,9 @@ export const PortfolioSection = () => {
                 description: p.summary || (Array.isArray(p.description) ? p.description[0] : ''),
                 details: p.description || [],
                 tags: providedTags,
+                images: p.images || [],
+                links: p.links || [],
+                files: p.files || [],
             };
         });
     }, []);
@@ -115,6 +118,9 @@ export const PortfolioSection = () => {
                                     description={expanded ? project.description : project.description?.slice(0, 140)}
                                     details={project.details}
                                     tags={project.tags}
+                                    images={project.images}
+                                    links={project.links}
+                                    files={project.files}
                                     onClick={() => setExpandedProject(expanded ? null : project.id)}
                                     isExpanded={expanded}
                                 />
