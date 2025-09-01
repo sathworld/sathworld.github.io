@@ -52,7 +52,7 @@ const education = data.education ? (() => {
         const catsText = Array.isArray(c.categories) && c.categories.length
           ? ` (${c.categories.map(cat => esc(cat)).join(', ')})`
           : '';
-        return `<li><strong>${esc(c.code)}</strong>: ${esc(c.title)}${catsText}</li>`;
+        return `<li><strong>${esc(c.code)}</strong> ${esc(c.title)}${catsText}</li>`;
       }).join('') + '</ul></div>'
     : '';
   return `
@@ -80,7 +80,6 @@ function renderExperience(expArr) {
     const companyLine = e.website ? `<a href="${escAttr(e.website)}" rel="noopener noreferrer">${esc(e.company)}</a>` : esc(e.company);
     return `<article class="exp-item">
   <h3>${esc(e.title)} – ${companyLine}</h3>
-  <p class="meta">${esc(e.location)} | ${esc(e.duration)}</p>
   ${list(e.description,'bullets')}
 </article>`;
   }).join('\n');
@@ -97,7 +96,13 @@ function renderProjects(pArr) {
     const techLine = p.technologies ? `<p class="tech"><strong>Tech:</strong> ${esc(p.technologies)}</p>` : '';
     const tagsLine = Array.isArray(p.tags) && p.tags.length ? `<p class="tags"><strong>Tags:</strong> ${p.tags.map(t=>esc(t)).join(', ')}</p>` : '';
     const linksLine = Array.isArray(p.links) && p.links.length ? `<p class="links">` + p.links.map(l=>`<a href="${escAttr(l.url)}" rel="noopener noreferrer">${esc(l.label||'Link')}</a>`).join(' · ') + `</p>` : '';
-    const filesLine = Array.isArray(p.files) && p.files.length ? `<ul class="files">` + p.files.map(f=>`<li><a href="${escAttr(f.url)}" ${/\.pdf$/i.test(f.url)||f.type==='pdf'?'target="_blank"':''} rel="noopener noreferrer">${esc(f.label||'File')}</a></li>`).join('') + `</ul>` : '';
+    const filesLine = Array.isArray(p.files) && p.files.length
+      ? `<p class="files">` + p.files.map(f => {
+          const needsTarget = /\.pdf$/i.test(f.url) || f.type === 'pdf';
+          const targetAttr = needsTarget ? ' target="_blank"' : '';
+          return `<a href="${escAttr(f.url)}"${targetAttr} rel="noopener noreferrer">${esc(f.label||'File')}</a>`;
+        }).join(' · ') + `</p>`
+      : '';
     const imagesLine = Array.isArray(p.images) && p.images.length ? `<div class="images">` + p.images.map(src=>`<img src="${escAttr(src)}" alt="${escAttr(p.title)} image" loading="lazy" style="max-height:70px;object-fit:contain;margin:2px;">`).join('') + `</div>` : '';
     return `<article class="project-item">
   <h3>${esc(p.title)}</h3>
@@ -163,10 +168,47 @@ const contactBlock = getContactInfo();
 
 const generated = `<!-- AUTO-GENERATED: noscript fallback -->
 <div class="noscript-fallback" style="font-family: system-ui, sans-serif; line-height:1.5; max-width: 960px; margin: 2rem auto; padding: 0 1rem;">
+  <style>
+    :root { --accent:#6b21a8; --accent-fg:#fff; --border: #d4d4d8; --bg-soft:#fafafa; --bg-chip:#f1eefc; --fg:#1f1f23; --fg-sub:#4b4b55; }
+    @media (prefers-color-scheme: dark) {
+      :root { --border:#2d2d33; --bg-soft:#18181b; --bg-chip:#582982; --fg:#f4f4f5; --fg-sub:#a1a1aa; --accent:#9333ea; --accent-fg:#111; }
+    }
+    body, .noscript-fallback { background: var(--bg-soft); color: var(--fg); }
+    .noscript-fallback a { color: var(--accent); text-decoration: none; }
+    .noscript-fallback a:hover, .noscript-fallback a:focus { text-decoration: underline; outline: none; }
+    .noscript-fallback h1,h2,h3,h4 { font-weight:600; line-height:1.2; letter-spacing:.5px; }
+    .noscript-fallback h2 { margin:2.25rem 0 1rem; font-size:1.5rem; position:relative; }
+    .noscript-fallback h2:after { content:""; position:absolute; left:0; bottom:-6px; width:60px; height:3px; background:linear-gradient(90deg,var(--accent),transparent); border-radius:2px; }
+    .noscript-fallback section { margin-bottom:2.5rem; }
+    .noscript-fallback p { margin:.4rem 0; }
+    .noscript-fallback ul { margin:.5rem 0 1rem 1.25rem; }
+    .noscript-fallback ul.bullets { list-style:disc; }
+    .noscript-fallback .awards { list-style:disc; }
+    .exp-item, .project-item { border:1px solid var(--border); background:rgba(255,255,255,0.6); backdrop-filter: blur(4px); padding:1rem 1.1rem 1rem; border-radius:14px; margin:0 0 1.2rem; box-shadow:0 2px 4px -2px rgba(0,0,0,.08); }
+    @media (prefers-color-scheme: dark) { .exp-item, .project-item { background:rgba(24,24,27,0.6); } }
+    .exp-item h3, .project-item h3 { margin:0 0 .35rem; font-size:1.05rem; }
+    .meta { font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--fg-sub); margin:.1rem 0 .6rem; }
+  .tech, .tags, .links, .files { font-size:.75rem; margin:.25rem 0; }
+    .tags strong, .tech strong { text-transform:uppercase; font-size:.68rem; letter-spacing:.08em; color:var(--fg-sub); margin-right:.35rem; }
+  .links a, .files a { display:inline-block; padding:.35rem .65rem; border:1px solid var(--border); border-radius:8px; font-size:.65rem; background:var(--bg-chip); color:var(--fg); line-height:1.1; margin:.2rem .25rem .2rem 0; }
+  .links a:hover, .files a:hover { background:var(--accent); color:var(--accent-fg); border-color:var(--accent); text-decoration:none; }
+    .images { margin:.4rem 0 .6rem; display:flex; flex-wrap:wrap; gap:.4rem; }
+    .images img { border:1px solid var(--border); border-radius:10px; background:#fff; padding:.35rem; }
+    @media (prefers-color-scheme: dark) { .images img { background:#141417; } }
+    dl { display:grid; grid-template-columns: minmax(140px,190px) 1fr; gap:.4rem .9rem; margin:.75rem 0 0; }
+    dt { font-weight:600; font-size:.8rem; text-transform:uppercase; letter-spacing:.05em; color:var(--fg-sub); }
+    dd { margin:0; font-size:.85rem; }
+    .courses h3 { font-size:.85rem; text-transform:uppercase; letter-spacing:.06em; font-weight:600; margin:1.4rem 0 .4rem; color:var(--fg-sub); }
+    .courses ul { list-style:none; margin:0; padding:0; }
+    .courses li { display:flex; gap:1rem; align-items:center; padding:4px 0; font-size:.9rem; line-height:1.3; }
+    .courses li strong { display:inline-flex; align-items:center; justify-content:center; min-width:78px; text-align:center; font-variant-numeric:tabular-nums; font-size:.95rem; background:var(--bg-chip); padding:.38rem .6rem; border-radius:999px; letter-spacing:.5px; }
+    footer { border-top:1px solid var(--border); padding-top:1.25rem; }
+    @media print { .noscript-fallback { box-shadow:none; background:#fff; } .exp-item, .project-item { break-inside:avoid; page-break-inside:avoid; } a { color:#000; } }
+  </style>
   <header style="margin-bottom:2rem;">
     <h1 style="margin:0 0 .5rem; font-size:2rem;">Damir Gazizullin</h1>
     <p>Portfolio (static fallback). JavaScript is disabled; interactive / 3D features hidden.</p>
-    <p><a href="#experience">Experience</a> · <a href="#projects">Projects</a> · <a href="#skills-static">Skills</a> · <a href="#edu">Education</a></p>
+    <p><a href="#projects">Projects</a> · <a href="#edu">Education</a> · <a href="#experience">Experience</a> · <a href="#skills-static">Skills</a></p>
   </header>
   ${contactBlock}
   ${resumesBlock}
