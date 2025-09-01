@@ -36,9 +36,7 @@ export default App;
 // TODO: Add a Footer
 // TODO: Add a 404 Page
 // TODO: Add a blog section
-// TODO: Add a resume section
 // TODO: Add a skills section
 // TODO: Add an inteests/hobbies section (LOW PRIORITY)
 // TODO: Add pictures to project backgrounds
-// TODO: Add project information, description, tags, links, and pictures
 // TODO: Design Team involvement

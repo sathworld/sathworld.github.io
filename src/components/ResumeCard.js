@@ -88,7 +88,7 @@ export const ResumeCard = ({
                         {description.map((d, i) => (
                             <li
                                 key={i}
-                                className="relative pl-5 leading-relaxed before:content-[''] before:absolute before:left-0 before:top-2 before:w-2 before:h-2 before:rounded-full before:bg-purple-dark dark:before:bg-purple-light before:ring-2 before:ring-purple-dark/15 dark:before:ring-purple-light/25"
+                                className="relative pl-6 leading-relaxed before:content-[''] before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:transform before:w-2 before:h-2 before:rounded-full before:bg-purple-dark dark:before:bg-purple-light before:ring-2 before:ring-purple-dark/15 dark:before:ring-purple-light/25"
                             >
                                 {d}
                             </li>
