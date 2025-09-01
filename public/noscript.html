@@ -5,6 +5,32 @@
     <p>Portfolio (static fallback). JavaScript is disabled; interactive / 3D features hidden.</p>
     <p><a href="#experience">Experience</a> · <a href="#projects">Projects</a> · <a href="#skills-static">Skills</a> · <a href="#edu">Education</a></p>
   </header>
+  <section id="contact-static"><h2>Contact</h2><p>Email: <b>dgazizul [at] uwaterloo [dot] ca</b></p><p>Links: <a href="https://github.com/sathworld" rel="noopener noreferrer">GitHub</a> · <a href="https://www.linkedin.com/in/dgazizullin/" rel="noopener noreferrer">LinkedIn</a></p></section>
+  <section id="resumes"><h2>Resumes</h2><ul><li><a href="resumes/Damir%20Gazizullin%20-%20Electrical.pdf" download>Damir Gazizullin - Electrical</a></li><li><a href="resumes/Damir%20Gazizullin%20-%20Embedded.pdf" download>Damir Gazizullin - Embedded</a></li><li><a href="resumes/Damir%20Gazizullin%20-%20FPGA%20ASIC.pdf" download>Damir Gazizullin - FPGA ASIC</a></li></ul></section>
+  
+  <section id="projects">
+    <h2>Projects</h2>
+    <article class="project-item">
+  <h3>Custom 8-bit Computer Tape-Out</h3>
+  <p class="meta">September 2024 – December 2024</p>
+  <p class="tech"><strong>Tech:</strong> Verilog, Python, Verilator, cocotb</p>
+  <p class="tags"><strong>Tags:</strong> Verilog, Python, Verilator, cocotb, RISC, RTL, ALU, Tapeout, SoC, EDA</p>
+  <p class="links"><a href="https://github.com/example/8bit-tapeout" rel="noopener noreferrer">Repository</a> · <a href="https://example.com/8bit-notes" rel="noopener noreferrer">Architecture Notes</a></p>
+  <ul class="files"><li><a href="/resumes/Damir Gazizullin - Electrical.pdf" target="_blank" rel="noopener noreferrer">Timing Report (PDF)</a></li></ul>
+  <div class="images"><img src="/logos/uwasic.webp" alt="Custom 8-bit Computer Tape-Out image" loading="lazy" style="max-height:70px;object-fit:contain;margin:2px;"></div>
+  <ul class="bullets"><li>Architected custom 8-bit RISC ISA with 16 instructions to balance datapath simplicity and opcode density.</li><li>Designed and verified pipelined ALU and register file blocks in Verilog, simulated with Verilator and cocotb.</li><li>Integrated modules from multiple teams to produce tapeout-ready GDS with &gt;20% area savings.</li><li>Validated timing with post-layout netlists and RC extraction to ensure functional accuracy.</li></ul>
+</article>
+<article class="project-item">
+  <h3>Wearable Telehealth Device</h3>
+  <p class="meta">August 2022 – January 2023</p>
+  <p class="tech"><strong>Tech:</strong> C++, MATLAB, ThingSpeak, Blynk API</p>
+  <p class="tags"><strong>Tags:</strong> C++, MATLAB, ThingSpeak, Blynk, ESP8266, ECG, Signal Processing, IoT, Wearable</p>
+  <p class="links"><a href="https://example.com/telehealth-dashboard" rel="noopener noreferrer">Cloud Dashboard</a></p>
+  <ul class="files"><li><a href="/resumes/Damir Gazizullin - Embedded.pdf" target="_blank" rel="noopener noreferrer">Signal Processing Report (PDF)</a></li></ul>
+  <div class="images"><img src="/logos/electrium-mobility.webp" alt="Wearable Telehealth Device image" loading="lazy" style="max-height:70px;object-fit:contain;margin:2px;"></div>
+  <ul class="bullets"><li>Built a WiFi-enabled wearable using ESP8266 and 5 I2C sensors for biometric monitoring.</li><li>Implemented ECG signal processing in MATLAB, achieving &gt;95% arrhythmia classification accuracy.</li><li>Created mobile dashboard with Blynk API and ThingSpeak for cloud monitoring and alerts.</li></ul>
+</article>
+  </section>
   
   <section id="edu">
     <h2>Education</h2>
@@ -12,22 +38,27 @@
     <p>Candidate for Bachelor of Applied Science (B.A.Sc.), Electrical Engineering (GPA: 3.99)</p>
     <p>September 2022 – Present</p>
     <ul class="awards"><li>First in Class (Fall 2022, 1A)</li><li>First in Class (Spring 2023, 1B)</li><li>First in Class (Winter 2024, 2A)</li><li>First in Class (Fall 2024, 2B)</li></ul>
+    <div class="courses"><h3>Selected Courses</h3><ul><li><strong>ECE 231</strong>: Semiconductor Physics and Devices (Device Physics, EM)</li><li><strong>ECE 222</strong>: Digital Computers (Comp Arch, Embedded)</li><li><strong>ECE 340</strong>: Electronic Circuits 2 (Analog Design, Device Physics)</li><li><strong>ECE 331</strong>: Electronic Devices (Device Physics, EM)</li><li><strong>ECE 493</strong>: On-Chip Interconnect (Network-on-Chip) (Comp Arch, Digital Design)</li><li><strong>ECE 493</strong>: Computer Arithmetic Hardware (Comp Arch, Digital Design)</li><li><strong>ECE 327</strong>: Digital Hardware Systems (Digital Design, Embedded)</li><li><strong>ECE 320</strong>: Computer Architecture (Comp Arch, Digital Design)</li><li><strong>ECE 313</strong>: Digital Signal Processing (Signal Processing, Digital Design)</li><li><strong>ECE 318</strong>: Communication Systems (Signal Processing, Analog Design)</li><li><strong>ECE 373</strong>: Radio Frequency and Microwave Circuits (RF, EM, Analog Design)</li></ul></div>
   </section>
   
   <section id="experience">
     <h2>Experience</h2>
-    <article class="exp-item"><h3>Product Development Coop – Strivonix</h3><p class="meta">Kitchener, ON | January 2025 – April 2025</p><ul class="bullets"><li>Led the design and testing of a portable pneumatic massage device's main 4-layer PCB, exceeding the required targets, achieving 97% functionality on the first design iteration and reducing BOM cost by over 30%.</li><li>Built ESP32-S3 firmware using ESP-IDF with FreeRTOS, utilizing software FSMs for peripheral interactions, achieving 95% accuracy for sensor readings using adaptively tuned Kalman filtering.</li><li>Implemented BLE drivers for the device to enable user-defined protocols that are saved in non-volatile memory (NVS).</li></ul></article>
-<article class="exp-item"><h3>Founder &amp; Technical Lead – UWASIC – IEEE SSCS Student Chapter</h3><p class="meta">Waterloo, ON | December 2024 – Present</p><ul class="bullets"><li>Founded and led UWASIC, which became the IEEE Solid-State Circuits Society Student Chapter for the KW Section.</li><li>Directed Dino Game ASIC project that targets open-source PDKs (IHP Open130-G2, SkyWater SKY130), reduced used area by over 10%, led RTL design and integration, meeting the tapeout deadline ahead of schedule by 1 week.</li><li>Achieved timing closure on the design, yielding 15% of extra slack time in both PDKs using OpenSTA.</li><li>Built custom simulator/visualizer using Verilator and C++ to debug pipeline and FSM behavior issues pre-layout.</li><li>Developed the onboarding project for an SPI-connected PWM Output Expander in Verilog, recruiting 50+ members.</li><li>Implemented a 5-bit-operand mixed-signal matrix-vector multiplier that outperforms digital-only designs in area by 25%.</li></ul></article>
-<article class="exp-item"><h3>Electrical Team Lead – Electrium Mobility</h3><p class="meta">Waterloo, ON | December 2023 – Present</p><ul class="bullets"><li>Taught 20+ workshops on schematic capture, PCB layout and routing, board bring-up, as well as IPC-compliant design and soldering, improving the reliability of the submitted designs by 30%.</li><li>Designed and validated the design of a custom brushless motor electronic speed controller (ESC), reducing cost by 20% and extending the number of available IO by 10% compared to existing micromobility ESCs on the market.</li></ul></article>
+    <article class="exp-item">
+  <h3>Product Development Coop – <a href="https://www.strivonix.com" rel="noopener noreferrer">Strivonix</a></h3>
+  <p class="meta">Kitchener, ON | January 2025 – April 2025</p>
+  <ul class="bullets"><li>Led the design and testing of a portable pneumatic massage device's main 4-layer PCB, exceeding the required targets, achieving 97% functionality on the first design iteration and reducing BOM cost by over 30%.</li><li>Built ESP32-S3 firmware using ESP-IDF with FreeRTOS, utilizing software FSMs for peripheral interactions, achieving 95% accuracy for sensor readings using adaptively tuned Kalman filtering.</li><li>Implemented BLE drivers for the device to enable user-defined protocols that are saved in non-volatile memory (NVS).</li></ul>
+</article>
+<article class="exp-item">
+  <h3>Founder &amp; Technical Lead – <a href="https://uwasic.com" rel="noopener noreferrer">UWASIC – IEEE SSCS Student Chapter</a></h3>
+  <p class="meta">Waterloo, ON | December 2024 – Present</p>
+  <ul class="bullets"><li>Founded and led UWASIC, which became the IEEE Solid-State Circuits Society Student Chapter for the KW Section.</li><li>Directed Dino Game ASIC project that targets open-source PDKs (IHP Open130-G2, SkyWater SKY130), reduced used area by over 10%, led RTL design and integration, meeting the tapeout deadline ahead of schedule by 1 week.</li><li>Achieved timing closure on the design, yielding 15% of extra slack time in both PDKs using OpenSTA.</li><li>Built custom simulator/visualizer using Verilator and C++ to debug pipeline and FSM behavior issues pre-layout.</li><li>Developed the onboarding project for an SPI-connected PWM Output Expander in Verilog, recruiting 50+ members.</li><li>Implemented a 5-bit-operand mixed-signal matrix-vector multiplier that outperforms digital-only designs in area by 25%.</li></ul>
+</article>
+<article class="exp-item">
+  <h3>Electrical Team Lead – <a href="https://electriummobility.com" rel="noopener noreferrer">Electrium Mobility</a></h3>
+  <p class="meta">Waterloo, ON | December 2023 – Present</p>
+  <ul class="bullets"><li>Taught 20+ workshops on schematic capture, PCB layout and routing, board bring-up, as well as IPC-compliant design and soldering, improving the reliability of the submitted designs by 30%.</li><li>Designed and validated the design of a custom brushless motor electronic speed controller (ESC), reducing cost by 20% and extending the number of available IO by 10% compared to existing micromobility ESCs on the market.</li></ul>
+</article>
   </section>
-  
-  <section id="projects">
-    <h2>Projects</h2>
-    <article class="project-item"><h3>Custom 8-bit Computer Tape-Out</h3><p class="meta">September 2024 – December 2024</p><ul class="bullets"><li>Architected custom 8-bit RISC ISA with 16 instructions to balance datapath simplicity and opcode density.</li><li>Designed and verified pipelined ALU and register file blocks in Verilog, simulated with Verilator and cocotb.</li><li>Integrated modules from multiple teams to produce tapeout-ready GDS with &gt;20% area savings.</li><li>Validated timing with post-layout netlists and RC extraction to ensure functional accuracy.</li></ul></article>
-<article class="project-item"><h3>Wearable Telehealth Device</h3><p class="meta">August 2022 – January 2023</p><ul class="bullets"><li>Built a WiFi-enabled wearable using ESP8266 and 5 I2C sensors for biometric monitoring.</li><li>Implemented ECG signal processing in MATLAB, achieving &gt;95% arrhythmia classification accuracy.</li><li>Created mobile dashboard with Blynk API and ThingSpeak for cloud monitoring and alerts.</li></ul></article>
-  </section>
-  <section id="resumes"><h2>Resumes</h2><ul><li><a href="resumes/Damir%20Gazizullin%20-%20Electrical.pdf" download>Damir Gazizullin - Electrical</a></li><li><a href="resumes/Damir%20Gazizullin%20-%20Embedded.pdf" download>Damir Gazizullin - Embedded</a></li><li><a href="resumes/Damir%20Gazizullin%20-%20FPGA%20ASIC.pdf" download>Damir Gazizullin - FPGA ASIC</a></li></ul></section>
-  <section id="contact-static"><h2>Contact</h2><p>Email: <b>dgazizul [at] uwaterloo [dot] ca</b></p><p>Links: <a href="https://github.com/sathworld" rel="noopener noreferrer">GitHub</a> · <a href="https://www.linkedin.com/in/dgazizullin/" rel="noopener noreferrer">LinkedIn</a></p></section>
   
   <section id="skills-static">
     <h2>Skills</h2>
@@ -35,5 +66,5 @@
       <dt>ECAD/Tools</dt><dd>Vivado, cocotb, PSpice, Verilator, Altium Designer, KiCad, ESPIDF, Git, STM32CubeMX, Docker</dd><dt>Languages</dt><dd>Verilog, SystemVerilog, C++, C, Python, Tcl, MATLAB</dd><dt>Lab Equipment</dt><dd>Oscilloscope, Logic Analyzer, Spectral Analyzer, DMM, Hot Air Station, Soldering Iron</dd><dt>Certifications</dt><dd>IPC Certified Interconnect Designer (CID)</dd>
     </dl>
   </section>
-  <footer style="margin-top:3rem; font-size:.875rem; opacity:.7;">Generated 2025-09-01T20:28:38.192Z • Enable JavaScript for full experience.</footer>
+  <footer style="margin-top:3rem; font-size:.875rem; opacity:.7;">Generated 2025-09-01T20:52:29.799Z • Enable JavaScript for full experience.</footer>
 </div>

@@ -36,20 +36,35 @@ function esc(s='') {
     .replace(/>/g,'&gt;')
     .replace(/"/g,'&quot;');
 }
+function escAttr(s='') {
+  return esc(s).replace(/'/g,'&#39;');
+}
 
 function list(items, cls='') {
   if (!items || !items.length) return '';
   return `<ul class="${cls}">` + items.map(i=>`<li>${esc(i)}</li>`).join('') + '</ul>';
 }
 
-const education = data.education ? `
+const education = data.education ? (() => {
+  const edu = data.education;
+  const courses = Array.isArray(edu.courses) && edu.courses.length
+    ? `<div class="courses"><h3>Selected Courses</h3><ul>` + edu.courses.map(c => {
+        const catsText = Array.isArray(c.categories) && c.categories.length
+          ? ` (${c.categories.map(cat => esc(cat)).join(', ')})`
+          : '';
+        return `<li><strong>${esc(c.code)}</strong>: ${esc(c.title)}${catsText}</li>`;
+      }).join('') + '</ul></div>'
+    : '';
+  return `
   <section id="edu">
     <h2>Education</h2>
-    <p><strong>${esc(data.education.university)}</strong> – ${esc(data.education.location)}</p>
-    <p>${esc(data.education.degree)} (GPA: ${esc(data.education.gpa)})</p>
-    <p>${esc(data.education.duration)}</p>
-    ${list(data.education.awards, 'awards')}
-  </section>` : '';
+    <p><strong>${esc(edu.university)}</strong> – ${esc(edu.location)}</p>
+    <p>${esc(edu.degree)} (GPA: ${esc(edu.gpa)})</p>
+    <p>${esc(edu.duration)}</p>
+    ${list(edu.awards, 'awards')}
+    ${courses}
+  </section>`;
+})() : '';
 
 const skills = Array.isArray(data.skills) ? `
   <section id="skills-static">
@@ -61,7 +76,14 @@ const skills = Array.isArray(data.skills) ? `
 
 function renderExperience(expArr) {
   if (!Array.isArray(expArr)) return '';
-  return expArr.map(e=>`<article class="exp-item"><h3>${esc(e.title)} – ${esc(e.company)}</h3><p class="meta">${esc(e.location)} | ${esc(e.duration)}</p>${list(e.description,'bullets')}</article>`).join('\n');
+  return expArr.map(e=>{
+    const companyLine = e.website ? `<a href="${escAttr(e.website)}" rel="noopener noreferrer">${esc(e.company)}</a>` : esc(e.company);
+    return `<article class="exp-item">
+  <h3>${esc(e.title)} – ${companyLine}</h3>
+  <p class="meta">${esc(e.location)} | ${esc(e.duration)}</p>
+  ${list(e.description,'bullets')}
+</article>`;
+  }).join('\n');
 }
 const experience = data.experience ? `
   <section id="experience">
@@ -71,7 +93,23 @@ const experience = data.experience ? `
 
 function renderProjects(pArr) {
   if (!Array.isArray(pArr)) return '';
-  return pArr.map(p=>`<article class="project-item"><h3>${esc(p.title)}</h3><p class="meta">${esc(p.duration)}</p>${list(p.description,'bullets')}</article>`).join('\n');
+  return pArr.map(p=>{
+    const techLine = p.technologies ? `<p class="tech"><strong>Tech:</strong> ${esc(p.technologies)}</p>` : '';
+    const tagsLine = Array.isArray(p.tags) && p.tags.length ? `<p class="tags"><strong>Tags:</strong> ${p.tags.map(t=>esc(t)).join(', ')}</p>` : '';
+    const linksLine = Array.isArray(p.links) && p.links.length ? `<p class="links">` + p.links.map(l=>`<a href="${escAttr(l.url)}" rel="noopener noreferrer">${esc(l.label||'Link')}</a>`).join(' · ') + `</p>` : '';
+    const filesLine = Array.isArray(p.files) && p.files.length ? `<ul class="files">` + p.files.map(f=>`<li><a href="${escAttr(f.url)}" ${/\.pdf$/i.test(f.url)||f.type==='pdf'?'target="_blank"':''} rel="noopener noreferrer">${esc(f.label||'File')}</a></li>`).join('') + `</ul>` : '';
+    const imagesLine = Array.isArray(p.images) && p.images.length ? `<div class="images">` + p.images.map(src=>`<img src="${escAttr(src)}" alt="${escAttr(p.title)} image" loading="lazy" style="max-height:70px;object-fit:contain;margin:2px;">`).join('') + `</div>` : '';
+    return `<article class="project-item">
+  <h3>${esc(p.title)}</h3>
+  <p class="meta">${esc(p.duration||'')}</p>
+  ${techLine}
+  ${tagsLine}
+  ${linksLine}
+  ${filesLine}
+  ${imagesLine}
+  ${list(p.description,'bullets')}
+</article>`;
+  }).join('\n');
 }
 const projects = data.projects ? `
   <section id="projects">
@@ -130,11 +168,11 @@ const generated = `<!-- AUTO-GENERATED: noscript fallback -->
     <p>Portfolio (static fallback). JavaScript is disabled; interactive / 3D features hidden.</p>
     <p><a href="#experience">Experience</a> · <a href="#projects">Projects</a> · <a href="#skills-static">Skills</a> · <a href="#edu">Education</a></p>
   </header>
+  ${contactBlock}
+  ${resumesBlock}
+  ${projects}
   ${education}
   ${experience}
-  ${projects}
-  ${resumesBlock}
-  ${contactBlock}
   ${skills}
   <footer style="margin-top:3rem; font-size:.875rem; opacity:.7;">Generated ${new Date().toISOString()} • Enable JavaScript for full experience.</footer>
 </div>`;
