@@ -1,6 +1,6 @@
 {
   "name": "my-portfolio",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "homepage": "https://sathworld.github.io/",
   "private": false,
   "dependencies": {
@@ -20,7 +20,7 @@
   "scripts": {
   "start": "react-scripts start",
   "generate:noscript": "node scripts/generate-noscript.js",
-  "build": "react-scripts build && npm run generate:noscript",
+  "build": "npm run generate:noscript && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",

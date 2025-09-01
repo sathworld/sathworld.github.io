@@ -68,13 +68,19 @@ export const ResumeCard = ({
                     )}
                 </h3>
 
-                {location && (
-                    <p className="text-sm lg:text-base font-medium text-purple-dark dark:text-purple-light mb-1 flex flex-wrap items-center gap-x-2">
-                        <span>{location}</span>
-                    </p>
-                )}
-                {duration && (
-                    <p className="text-xs uppercase tracking-wide text-purple-dark/70 dark:text-purple-light/60 mb-2">{duration}</p>
+                {(location || duration) && (
+                    <div className="mb-2">
+                        {location && (
+                            <p className="text-sm lg:text-base text-purple-dark-contrast dark:text-purple-light-contrast leading-snug mb-1">
+                                {location}
+                            </p>
+                        )}
+                        {duration && (
+                            <p className="text-sm uppercase tracking-wide text-purple-dark/70 dark:text-purple-light/60 leading-snug">
+                                {duration}
+                            </p>
+                        )}
+                    </div>
                 )}
 
                 {isArray ? (
