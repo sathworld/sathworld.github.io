@@ -69,23 +69,16 @@ html, body {
   }
 
   /* Interactive / clickable elements */
-  .interactive {
-    @apply cursor-pointer transition duration-300 ease-out;
+  .interactive { cursor: pointer; transition: box-shadow 300ms ease-out; }
+  .interactive-focus { outline: none; }
+  .interactive-focus:focus-visible { outline: 2px solid #f0abfc; box-shadow: 0 0 0 2px #f0abfc; }
+  @media (prefers-color-scheme: dark) {
+    .interactive-focus:focus-visible { outline-color: #a855f7; box-shadow: 0 0 0 2px #a855f7; }
   }
-  .interactive:hover {
-    @apply scale-[1.015];
-  }
-  .interactive:active {
-    @apply scale-[0.98];
-  }
-  .interactive-focus {
-    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-fuchsia-400 dark:focus-visible:ring-fuchsia-600 focus-visible:ring-offset-2 focus-visible:ring-offset-purple-light dark:focus-visible:ring-offset-purple-dark;
-  }
-  .hover-accent {
-    @apply transition-shadow duration-300;
-  }
-  .hover-accent:hover {
-    @apply ring-1 ring-fuchsia-400/50 dark:ring-fuchsia-500/50;
+  .hover-accent { transition: box-shadow 300ms; }
+  .hover-accent:hover { box-shadow: 0 0 0 1px rgba(240,171,252,0.5); }
+  @media (prefers-color-scheme: dark) {
+    .hover-accent:hover { box-shadow: 0 0 0 1px rgba(168,85,247,0.5); }
   }
   /* Animated name gradient (pink/purple/blue) */
   :root {

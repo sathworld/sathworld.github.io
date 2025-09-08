@@ -1,3 +1,5 @@
+import { title } from "framer-motion/client";
+
 export const resumeData = {
   education: {
     university: "University of Waterloo",
@@ -90,26 +92,57 @@ export const resumeData = {
   ],
   projects: [
     {
-      title: "Custom 8-bit Computer Tape-Out",
+      title: "Custom 8-bit Computer Tapeout",
       duration: "September 2024 – December 2024",
       tags: [
-        'Verilog', 'Python', 'Verilator', 'cocotb', 'RISC', 'RTL', 'ALU', 'Tapeout', 'SoC', 'EDA'
+        'RTL', 'RTL Verification', 'Python', 'Tapeout', 'ASIC'
       ],
       images: [
-        '/logos/uwasic.webp'
+        { src: '/portfolio/cpu8bit/CPU-GDS.png', title: 'Post-Layout GDS' },
+        { src: '/portfolio/cpu8bit/8bitSAP-1CPUArch.drawio.png', title: '8-bit SAP-1 CPU Architecture' },
+        { src: '/portfolio/cpu8bit/CPU-mermaid.png', title: 'CPU Execution State Diagram' }
       ],
       links: [
-        { label: 'Repository', url: 'https://github.com/example/8bit-tapeout' },
-        { label: 'Architecture Notes', url: 'https://example.com/8bit-notes' }
+        { label: 'Repository', url: 'https://github.com/gjrchen/8-Bit-CPU-top' },
+        { label: 'GDSII View', url: 'https://legacy-gltf.gds-viewer.tinytapeout.com/?model=https://gjrchen.github.io/8-Bit-CPU-top/tinytapeout.gds.gltf' }
       ],
       files: [
-        { label: 'Timing Report (PDF)', url: '/resumes/Damir Gazizullin - Electrical.pdf', type: 'pdf' }
+        { label: 'CPU Datasheet', url: '/portfolio/cpu8bit/8BitCPU_datasheet.pdf' }
       ],
       description: [
         "Architected custom 8-bit RISC ISA with 16 instructions to balance datapath simplicity and opcode density.",
         "Designed and verified pipelined ALU and register file blocks in Verilog, simulated with Verilator and cocotb.",
         "Integrated modules from multiple teams to produce tapeout-ready GDS with >20% area savings.",
         "Validated timing with post-layout netlists and RC extraction to ensure functional accuracy.",
+        "Developed an on-chip programmer to flash programs and data into the RAM by communicating with an external MCU.",
+        "Broke instructions down into microinstructions to be carried out every CPU cycle, enabling the utilization of a single common bus and more complex instructions such as adding from the RAM.",
+        "Developed cocotb test suites for individual modules as well as complete integration tests."
+      ],
+    },
+    {
+      title: "Dino Game ASIC",
+      duration: "September 2024 – December 2024",
+      tags: [
+        'RTL', 'RTL Verification', 'Verilator', 'Tapeout', 'FPGA', 'ASIC'
+      ],
+      images: [
+        { src: '/portfolio/dinogame/ASIC.png', title: 'Post-Layout GDS with visualized activity levels' },
+        { src: '/portfolio/dinogame/DinoArchUWASIC.drawio.png', title: 'Dino Architecture Diagram' },
+        { src: '/portfolio/dinogame/Render.png', title: 'Render Captured from an FPGA' }
+      ],
+      links: [
+        { label: 'Repository', url: 'https://github.com/UW-ASIC/Dino' },
+        { label: 'GDSII View', url: 'https://gds-viewer.tinytapeout.com/?model=https%3A%2F%2Fshuttle-assets.tinytapeout.com%2Fttihp25a%2Ftt_um_uwasic_dinogame%2Ftt_um_uwasic_dinogame.gds&process=SG13G2' }
+      ],
+      files: [],
+      description: [
+        "Designed and FPGA-tested a 160×200 μm Dino Game ASIC with VGA output, submitted for tapeout via TinyTapeout.",
+        "Generated VGA output in real-time (“raced the beam”) to avoid frame buffer memory overhead due to ASIC size limits.",
+        "Architechted a custom graphics module with sprite rendering, collision detection, and game state management.",
+        "Created an elegant way for implementing different colour palettes that are switched based on the game state using only combinational logic.",
+        "Implemented a linear feedback shift register to generate random numbers and a basic physics engine for player physics.",
+        "Developed an autonomous controller in Verilog to play the game when no controller is detected on startup.",
+        "Developed VGA emulator in C++ using SDL2 and Verilat or to simulate chip input/output and test design in real time."
       ],
     },
     {

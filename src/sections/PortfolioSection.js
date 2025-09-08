@@ -110,6 +110,7 @@ export const PortfolioSection = () => {
                                 exit="exit"
                                 transition={{ duration: 0.28, ease: [0.4,0,0.2,1] }}
                                 className={`${dimOthers ? 'opacity-40 hover:opacity-100 transition-opacity' : 'opacity-100'} ${expanded ? 'col-span-1' : ''}`}
+                                style={{ zIndex: expanded ? 60 : undefined }}
                             >
                                 <ProjectCard
                                     id={`project-${project.id}`}
