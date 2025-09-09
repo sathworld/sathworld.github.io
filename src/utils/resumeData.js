@@ -1,4 +1,4 @@
-import { title } from "framer-motion/client";
+import { image, title } from "framer-motion/client";
 
 export const resumeData = {
   education: {
@@ -23,7 +23,7 @@ export const resumeData = {
       { code: 'ECE 493', title: 'Computer Arithmetic Hardware', categories: ['Comp Arch', 'Digital Design'] },
       { code: 'ECE 327', title: 'Digital Hardware Systems', categories: ['Digital Design', 'Embedded'] },
       { code: 'ECE 320', title: 'Computer Architecture', categories: ['Comp Arch', 'Digital Design'] },
-      { code: 'ECE 313', title: 'Digital Signal Processing', categories: ['Signal Processing', 'Digital Design'] },
+//      { code: 'ECE 313', title: 'Digital Signal Processing', categories: ['Signal Processing', 'Digital Design'] },
       { code: 'ECE 318', title: 'Communication Systems', categories: ['Signal Processing', 'Analog Design'] },
       { code: 'ECE 373', title: 'Radio Frequency and Microwave Circuits', categories: ['RF', 'EM', 'Analog Design'] },
     ],
@@ -92,6 +92,70 @@ export const resumeData = {
   ],
   projects: [
     {
+      title: "Mixed Signal ASIC for Matrix-Vector Multiplication",
+      duration: "June 2025 – November 2025",
+      tags: [
+        'ASIC', 'Signal Processing', 'Simulation', 'ASIC Layout'
+      ]
+    },
+    {
+      title: "Custom 50V ESC PCBA for Micromobility Vehicles with BLDC Motors",
+      duration: "May 2025 – September 2025",
+      tags: [
+        'PCBA', 'PCB'
+      ]
+    },
+    {
+      title: "ASIC & FPGA Implementation on a Torus NoC based on HopliteRT",
+      duration: "May 2025 – August 2025",
+      tags: [
+        'Networks-on-Chip', 'RTL', 'ASIC', 'FPGA'
+      ]
+    },
+    {
+      title: "3D Torus NoC Simulator in Booksim",
+      duration: "June 2025 – August 2025",
+      tags: [
+        'Networks-on-Chip', 'Booksim', 'Simulation', 'Python'
+      ],
+      description: [
+        "Extended Booksim2 to support a 3D Torus with bidirectional Z-dimension meshing for reducing bottlenecks from through-silicon vias (TSVs).",
+        "Implemented elevator-first deterministic routing, ensuring livelock and deadlock freedom while prioritizing Z > Y > X traversal.",
+        "Developed Python tooling for flexible elevator mapping: users can specify elevator coordinates via CSV, visualize mappings, and customize nearest-elevator selection functions.",
+        "Modeled TSVs with realistic multi-cycle latency penalties and integrated them into Booksim’s credit-based flow control system.",
+        "Explored elevator placement patterns (diagonal, checkerboard, sub-tiling) and quantified performance tradeoffs across throughput, latency, and injection rate.",
+        "Demonstrated that bidirectional Z-meshing can nearly double sustainable throughput with only ~33% area overhead, with non-linear gains depending on elevator density."
+      ],
+      images: [
+        { src: '/portfolio/booksim_3d_torus/drawing-torus-elev-stack.png', title: '3D Torus Topology' },
+        { src: '/portfolio/booksim_3d_torus/ThroughputVSTopology.png', title: 'Throughput vs Vertical Link Topology' }
+      ],
+      links: [
+        { label: 'Repository', url: 'https://github.com/VoarL/booksim2-3dtorus' }
+      ],
+      files: [
+        { label: 'Project Report', url: '/portfolio/booksim_3d_torus/3D_Torus_NoC_Report.pdf' }
+      ],
+    },
+    {
+      title: "SPI-connected PWM Generator",
+      duration: "April 2025 – May 2025",
+      tags: [
+        'RTL', 'ASIC', 'Tapeout', 'RTL Verification', 'Python'
+      ]
+    },
+    {
+      title: "Strivonix Main PCBA and Firmware",
+      duration: "January 2025 – March 2025",
+      tags: [
+        "Firmware", "C", "IoT", "PCB", "PCBA", "ESPIDF"
+      ],
+      images: [
+        { src: "/portfolio/Strivonix/IMG_20250519_214240.jpg", title: "Strivonix Main PCBA" },
+        { src: "/portfolio/Strivonix/IMG_20250519_214211.jpg", title: "Strivonix PCBA in the housing" }
+      ]
+    },
+    {
       title: "Custom 8-bit Computer Tapeout",
       duration: "September 2024 – December 2024",
       tags: [
@@ -110,7 +174,7 @@ export const resumeData = {
         { label: 'CPU Datasheet', url: '/portfolio/cpu8bit/8BitCPU_datasheet.pdf' }
       ],
       description: [
-        "Architected custom 8-bit RISC ISA with 16 instructions to balance datapath simplicity and opcode density.",
+        "Architected custom 8-bit ISA CPU with 16 instructions to balance datapath simplicity and opcode density.",
         "Designed and verified pipelined ALU and register file blocks in Verilog, simulated with Verilator and cocotb.",
         "Integrated modules from multiple teams to produce tapeout-ready GDS with >20% area savings.",
         "Validated timing with post-layout netlists and RC extraction to ensure functional accuracy.",
@@ -121,7 +185,7 @@ export const resumeData = {
     },
     {
       title: "Dino Game ASIC",
-      duration: "September 2024 – December 2024",
+      duration: "January 2025 – March 2025",
       tags: [
         'RTL', 'RTL Verification', 'Verilator', 'Tapeout', 'FPGA', 'ASIC'
       ],
@@ -149,19 +213,16 @@ export const resumeData = {
       title: "Wearable Telehealth Device",
       duration: "August 2022 – January 2023",
       tags: [
-        'C++', 'MATLAB', 'ThingSpeak', 'Blynk', 'ESP8266', 'ECG', 'Signal Processing', 'IoT', 'Wearable'
+        'C++', 'MATLAB', 'Signal Processing', 'IoT'
       ],
       images: [
-        '/logos/electrium-mobility.webp'
       ],
       links: [
-        { label: 'Cloud Dashboard', url: 'https://example.com/telehealth-dashboard' }
       ],
       files: [
-        { label: 'Signal Processing Report (PDF)', url: '/resumes/Damir Gazizullin - Embedded.pdf', type: 'pdf' }
       ],
       description: [
-        "Built a WiFi-enabled wearable using ESP8266 and 5 I2C sensors for biometric monitoring.",
+        "Built a WiFi-enabled wearable using an ESP8266 SoC and multiple I2C sensors for biometric monitoring.",
         "Implemented ECG signal processing in MATLAB, achieving >95% arrhythmia classification accuracy.",
         "Created mobile dashboard with Blynk API and ThingSpeak for cloud monitoring and alerts.",
       ],

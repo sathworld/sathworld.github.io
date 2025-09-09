@@ -77,12 +77,12 @@ export const ProjectCard = ({
                                             const caption = typeof img === 'object' && img && img.title ? img.title : '';
                                             const altText = caption || `${title} image ${i+1}`;
                                             return (
-                                                <figure key={i} className="max-w-xs">
+                        <figure key={i} className="w-64">
                                                     <img
                                                         src={src}
                                                         alt={altText}
                                                         title={caption || undefined}
-                                                        className="max-h-56 max-w-xs rounded-xl border border-purple-dark/10 dark:border-purple-light/15 shadow-md object-contain bg-white/40 dark:bg-purple-dark/30 p-2 cursor-zoom-in select-none"
+                            className="max-h-56 w-full rounded-xl border border-purple-dark/10 dark:border-purple-light/15 shadow-md object-contain bg-white/40 dark:bg-purple-dark/30 p-2 cursor-zoom-in select-none"
                                                         loading="lazy"
                                                         tabIndex={0}
                                                         onClick={e => { e.stopPropagation(); setLightboxIdx(i); }}
@@ -90,7 +90,7 @@ export const ProjectCard = ({
                                                         draggable={false}
                                                     />
                                                     {caption && (
-                                                        <figcaption className="mt-1 text-xs text-purple-dark-contrast/80 dark:text-purple-light-contrast/80">{caption}</figcaption>
+                            <figcaption className="mt-1 text-xs text-purple-dark-contrast/80 dark:text-purple-light-contrast/80 clamp-2">{caption}</figcaption>
                                                     )}
                                                 </figure>
                                             );

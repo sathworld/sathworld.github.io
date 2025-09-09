@@ -97,6 +97,14 @@ html, body {
     filter: drop-shadow(0 2px 2px rgba(0,0,0,0.35)) drop-shadow(0 4px 10px rgba(0,0,0,0.25));
     animation: name-bg-shift 18s linear infinite;
   }
+  /* Simple 2-line clamp utility */
+  .clamp-2 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  line-clamp: 2;
+    overflow: hidden;
+  }
   @keyframes name-bg-shift {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
