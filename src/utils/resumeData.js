@@ -167,9 +167,12 @@ export const resumeData = {
         "Developed a script for custom placement of the NoC routers on the FPGA and floorplanning to optimize routing and minimize latency."
       ],
       links: [
-        { label: 'Repository', url: '' },
+        { label: 'Repository', url: 'https://github.com/sathworld/hoplitert-noc-verilog' },
         { label: 'HopliteRT', url: 'https://nachiket.github.io/publications/hoplitert_fpt-2017.pdf' }
       ],
+      images: [
+        { src: '/portfolio/torus_noc/torus.png', title: 'Network-on-Chip Architecture' },
+      ]
     },
     {
       title: "3D Torus NoC Simulator in Booksim",
