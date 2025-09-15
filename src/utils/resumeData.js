@@ -1,3 +1,5 @@
+import { link } from "framer-motion/client";
+
 export const resumeData = {
   education: {
     university: "University of Waterloo",
@@ -229,6 +231,17 @@ export const resumeData = {
       images: [
         { src: "/portfolio/Strivonix/IMG_20250519_214240.jpg", title: "Strivonix Main PCBA" },
         { src: "/portfolio/Strivonix/IMG_20250519_214211.jpg", title: "Strivonix PCBA in the housing" }
+      ],
+      description: [
+        "Led the design and testing of a portable massage device's 4-layer PCB, exceeding the required targets and reducing BOM cost by over 30%.",
+        "Built ESP32-S3 firmware using ESP-IDF with FreeRTOS, utilizing software FSMs for peripheral interactions, achieving 95% accuracy for sensor readings using adaptively tuned Kalman filtering.",
+        "Implemented BLE drivers for the device to enable user-defined protocols that are saved in non-volatile memory (NVS).",
+        "Integrated OTA update functionality to enable remote firmware updates, improving maintainability and user experience.",
+        "Wrote comprehensive documentation for the PCB design and firmware architecture to facilitate future development and maintenance.",
+        "Conducted extensive testing and validation of the PCB and firmware to ensure reliability and performance under various operating conditions."
+      ],
+      links: [
+        { label: 'Strivonix Website', url: 'https://www.strivonix.com' }
       ]
     },
     {
