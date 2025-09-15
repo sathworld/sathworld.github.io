@@ -1,5 +1,3 @@
-import { link } from "framer-motion/client";
-
 export const resumeData = {
   education: {
     university: "University of Waterloo",

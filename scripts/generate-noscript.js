@@ -102,7 +102,23 @@ function renderProjects(pArr) {
           return `<a href="${escAttr(f.url)}"${targetAttr} rel="noopener noreferrer">${esc(f.label||'File')}</a>`;
         }).join(' · ') + `</p>`
       : '';
-    const imagesLine = Array.isArray(p.images) && p.images.length ? `<div class="images">` + p.images.map(src=>`<img src="${escAttr(src)}" alt="${escAttr(p.title)} image" loading="lazy" style="max-height:70px;object-fit:contain;margin:2px;">`).join('') + `</div>` : '';
+    const imagesLine = Array.isArray(p.images) && p.images.length
+        ? `<div class="images">` + p.images.map(img => {
+          let src = '', alt = '', title = '';
+          if (typeof img === 'string') {
+            src = img;
+            alt = `${p.title} image`;
+          } else if (img && typeof img === 'object') {
+            src = img.src || '';
+            title = img.title || '';
+            alt = title || `${p.title} image`;
+          } else {
+            return '';
+          }
+          const titleAttr = title ? ` title="${escAttr(title)}"` : '';
+            return `<img src="${escAttr(src)}" alt="${escAttr(alt)}"${titleAttr} loading="lazy">`;
+        }).join('') + `</div>`
+      : '';
     return `<article class="project-item">
   <h3>${esc(p.title)}</h3>
   <p class="meta">${esc(p.duration||'')}</p>
@@ -192,8 +208,8 @@ const generated = `<!-- AUTO-GENERATED: noscript fallback -->
     .tags strong, .tech strong { text-transform:uppercase; font-size:.68rem; letter-spacing:.08em; color:var(--fg-sub); margin-right:.35rem; }
   .links a, .files a { display:inline-block; padding:.42rem .7rem .4rem; border:1px solid var(--border); border-radius:10px; font-size:.75rem; background:var(--bg-chip); color:var(--fg); line-height:1.05; margin:.25rem .35rem .25rem 0; letter-spacing:.25px; }
   .links a:hover, .files a:hover { background:var(--accent); color:var(--accent-fg); border-color:var(--accent); text-decoration:none; }
-    .images { margin:.4rem 0 .6rem; display:flex; flex-wrap:wrap; gap:.4rem; }
-    .images img { border:1px solid var(--border); border-radius:10px; background:#fff; padding:.35rem; }
+  .images { margin:.5rem 0 .75rem; display:flex; flex-wrap:wrap; gap:.5rem; }
+  .images img { border:1px solid var(--border); border-radius:10px; background:#fff; padding:.4rem; max-height:280px; max-width:280px; object-fit:contain; }
     @media (prefers-color-scheme: dark) { .images img { background:#141417; } }
     dl { display:grid; grid-template-columns: minmax(140px,190px) 1fr; gap:.4rem .9rem; margin:.75rem 0 0; }
     dt { font-weight:600; font-size:.8rem; text-transform:uppercase; letter-spacing:.05em; color:var(--fg-sub); }
@@ -206,8 +222,6 @@ const generated = `<!-- AUTO-GENERATED: noscript fallback -->
     @media print { .noscript-fallback { box-shadow:none; background:#fff; } .exp-item, .project-item { break-inside:avoid; page-break-inside:avoid; } a { color:#000; } }
   </style>
   <header style="margin-bottom:2rem;">
-    <h1 style="margin:0 0 .5rem; font-size:2rem;">Damir Gazizullin</h1>
-    <p>Portfolio (static fallback). JavaScript is disabled; interactive / 3D features hidden.</p>
     <p><a href="#projects">Projects</a> · <a href="#edu">Education</a> · <a href="#experience">Experience</a> · <a href="#skills-static">Skills</a></p>
   </header>
   ${contactBlock}

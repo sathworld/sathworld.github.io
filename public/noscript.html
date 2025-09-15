@@ -26,8 +26,8 @@
     .tags strong, .tech strong { text-transform:uppercase; font-size:.68rem; letter-spacing:.08em; color:var(--fg-sub); margin-right:.35rem; }
   .links a, .files a { display:inline-block; padding:.42rem .7rem .4rem; border:1px solid var(--border); border-radius:10px; font-size:.75rem; background:var(--bg-chip); color:var(--fg); line-height:1.05; margin:.25rem .35rem .25rem 0; letter-spacing:.25px; }
   .links a:hover, .files a:hover { background:var(--accent); color:var(--accent-fg); border-color:var(--accent); text-decoration:none; }
-    .images { margin:.4rem 0 .6rem; display:flex; flex-wrap:wrap; gap:.4rem; }
-    .images img { border:1px solid var(--border); border-radius:10px; background:#fff; padding:.35rem; }
+  .images { margin:.5rem 0 .75rem; display:flex; flex-wrap:wrap; gap:.5rem; }
+  .images img { border:1px solid var(--border); border-radius:10px; background:#fff; padding:.4rem; max-height:280px; max-width:280px; object-fit:contain; }
     @media (prefers-color-scheme: dark) { .images img { background:#141417; } }
     dl { display:grid; grid-template-columns: minmax(140px,190px) 1fr; gap:.4rem .9rem; margin:.75rem 0 0; }
     dt { font-weight:600; font-size:.8rem; text-transform:uppercase; letter-spacing:.05em; color:var(--fg-sub); }
@@ -40,8 +40,6 @@
     @media print { .noscript-fallback { box-shadow:none; background:#fff; } .exp-item, .project-item { break-inside:avoid; page-break-inside:avoid; } a { color:#000; } }
   </style>
   <header style="margin-bottom:2rem;">
-    <h1 style="margin:0 0 .5rem; font-size:2rem;">Damir Gazizullin</h1>
-    <p>Portfolio (static fallback). JavaScript is disabled; interactive / 3D features hidden.</p>
     <p><a href="#projects">Projects</a> · <a href="#edu">Education</a> · <a href="#experience">Experience</a> · <a href="#skills-static">Skills</a></p>
   </header>
   <section id="contact-static"><h2>Contact</h2><p>Email: <b>dgazizul [at] uwaterloo [dot] ca</b></p><p>Links: <a href="https://github.com/sathworld" rel="noopener noreferrer">GitHub</a> · <a href="https://www.linkedin.com/in/dgazizullin/" rel="noopener noreferrer">LinkedIn</a></p></section>
@@ -53,28 +51,37 @@
   <h3>Mixed Signal ASIC for Matrix-Vector Multiplication</h3>
   <p class="meta">June 2025 – November 2025</p>
   <p class="tags"><strong>Tags:</strong> ASIC, Signal Processing, Simulation, ASIC Layout</p>
+  <p class="links"><a href="https://github.com/UW-ASIC/Matrix-Vector-Multiplier" rel="noopener noreferrer">Repository</a> · <a href="https://github.com/UW-ASIC/UWASIC-ALG" rel="noopener noreferrer">Custom-made Schematic Optimizer</a></p>
   
-  
-  
-  
+  <div class="images"><img src="/portfolio/mvm/MVM-ASIC-DIAGRAM.webp" alt="Matrix-Vector Multiplier Architecture Diagram" title="Matrix-Vector Multiplier Architecture Diagram" loading="lazy"><img src="/portfolio/mvm/VMM-Principle.png" alt="Principle of Operation Diagram" title="Principle of Operation Diagram" loading="lazy"></div>
+  <ul class="bullets"><li>Computes matrix–vector products with programmable resistors (weights), DAC-driven inputs, TIAs, and SAR ADCs.</li><li>Defined SAR ADC architecture and conversion sequencing to digitize outputs Y1…Yn.</li><li>Designed trans-impedance amplifiers (TIAs) to sense and condition MVM currents for accurate readout.</li><li>Built voltage-source DACs to drive input vector voltages representing column entries −X1…−Xm.</li><li>Implemented programmable-resistor DACs to encode row entries per the system architecture.</li><li>Developed digital control and interface logic supporting AXI interface to drive biases, orchestrate conversions, and read back results.</li><li>Surveyed IEEE literature and alternative analog MVM implementations to guide design trade-offs.</li><li>Developed a custom tool that optimizes xschem schematics by running automated ngspice simulations and parameter sweeps.</li><li>Designed SAR ADC blocks and low-noise, high-bandwidth op-amps for TIA front-ends and buffering stages.</li></ul>
 </article>
 <article class="project-item">
   <h3>Custom 50V ESC PCBA for Micromobility Vehicles with BLDC Motors</h3>
   <p class="meta">May 2025 – September 2025</p>
   <p class="tags"><strong>Tags:</strong> PCBA, PCB</p>
+  <p class="links"><a href="https://github.com/Electrium-Mobility/sresc" rel="noopener noreferrer">Repository</a></p>
   
   
+  <ul class="bullets"><li>Designed a custom 4-layer PCB for a 50V brushless motor electronic speed controller (ESC) targeting micromobility vehicles.</li><li>Created the schematic and PCB layout in KiCad, ensuring signal integrity and thermal management for high-current paths.</li><li>Selected components and created a bill of materials (BOM) that reduced costs by over 30% while meeting performance requirements.</li><li>Increased availability of user-accessible GPIO by 10% compared to existing ESCs on the market.</li></ul>
+</article>
+<article class="project-item">
+  <h3>FPGA Implementation of a configurable digital 512x512 Matrix-Vector Multiplier targeting Xilinx Series 7 FPGAs</h3>
+  <p class="meta">July 2025 – August 2025</p>
+  <p class="tags"><strong>Tags:</strong> RTL, FPGA, RTL Verification, Python, Signal Processing</p>
+  <p class="links"><a href="https://github.com/sathworld/mvm" rel="noopener noreferrer">Repository</a></p>
   
-  
+  <div class="images"><img src="/portfolio/mvm327/MVM-FPGA-Block-Diagram.png" alt="Matrix-Vector Multiplier FPGA Block Diagram" title="Matrix-Vector Multiplier FPGA Block Diagram" loading="lazy"><img src="/portfolio/mvm327/MVM-FPGA-Resource-Usage.png" alt="Resource Usage on Xilinx Pynq-Z1" title="Resource Usage on Xilinx Pynq-Z1" loading="lazy"></div>
+  <ul class="bullets"><li>Designed a highly configurable digital matrix-vector multiplier (MVM) in Verilog, capable of handling 512x512 matrices with 8-bit integers.</li><li>Implemented the design to utilize Xilinx Series 7 FPGA DSP slices for efficient multiplication and addition operations, utilizing bit-packing techniques and ternary adders to maximize resource efficiency.</li><li>Developed a Python-based testbench using cocotb to perform exhaustive verification of separate modules and the overall MVM system, achieving 100% functional coverage across all configurations.</li><li>Achieved a clock frequency of up to 300 MHz on a Xilinx Pynq-Z1 board, with throughput of 38.4 GOPS.</li><li>Obtained resource usage of approximately 95% of DSP slices and 70% of LUTs on the FPGA for the full 512x512 configuration.</li><li>Utilized various implementation strategies, including disabling synthesis optimizations and floorplanning, to meet timing constraints and optimize performance.</li></ul>
 </article>
 <article class="project-item">
   <h3>ASIC &amp; FPGA Implementation on a Torus NoC based on HopliteRT</h3>
   <p class="meta">May 2025 – August 2025</p>
-  <p class="tags"><strong>Tags:</strong> Networks-on-Chip, RTL, ASIC, FPGA</p>
+  <p class="tags"><strong>Tags:</strong> Networks-on-Chip, RTL, ASIC, FPGA, RTL Verification, Python</p>
+  <p class="links"><a href="https://github.com/sathworld/hoplitert-noc-verilog" rel="noopener noreferrer">Repository</a> · <a href="https://nachiket.github.io/publications/hoplitert_fpt-2017.pdf" rel="noopener noreferrer">HopliteRT</a></p>
   
-  
-  
-  
+  <div class="images"><img src="/portfolio/torus_noc/torus.png" alt="Network-on-Chip Architecture" title="Network-on-Chip Architecture" loading="lazy"></div>
+  <ul class="bullets"><li>Implemented a 4x4 2D Torus Network-on-Chip using the HopliteRT router architecture, supporting virtual channels and deadlock-free routing.</li><li>Designed and verified the NoC (including router, switch, and a client interface components) in SystemVerilog, simulating with Verilator and to ensure correct functionality and performance.</li><li>Achieved timing closure on the ASIC design targeting the TSMC 65nm node using Synopsys Design Compiler and Innovus, meeting the performance and area requirements.</li><li>Successfully synthesized and implemented the NoC on a Xilinx Artix-7 FPGA, achieving a maximum clock frequency of 200 MHz.</li><li>Developed a script for custom placement of the NoC routers on the FPGA and floorplanning to optimize routing and minimize latency.</li></ul>
 </article>
 <article class="project-item">
   <h3>3D Torus NoC Simulator in Booksim</h3>
@@ -82,26 +89,26 @@
   <p class="tags"><strong>Tags:</strong> Networks-on-Chip, Booksim, Simulation, Python</p>
   <p class="links"><a href="https://github.com/VoarL/booksim2-3dtorus" rel="noopener noreferrer">Repository</a></p>
   <p class="files"><a href="/portfolio/booksim_3d_torus/3D_Torus_NoC_Report.pdf" target="_blank" rel="noopener noreferrer">Project Report</a></p>
-  <div class="images"><img src="[object Object]" alt="3D Torus NoC Simulator in Booksim image" loading="lazy" style="max-height:70px;object-fit:contain;margin:2px;"><img src="[object Object]" alt="3D Torus NoC Simulator in Booksim image" loading="lazy" style="max-height:70px;object-fit:contain;margin:2px;"></div>
+  <div class="images"><img src="/portfolio/booksim_3d_torus/drawing-torus-elev-stack.png" alt="3D Torus Topology" title="3D Torus Topology" loading="lazy"><img src="/portfolio/booksim_3d_torus/ThroughputVSTopology.png" alt="Throughput vs Vertical Link Topology" title="Throughput vs Vertical Link Topology" loading="lazy"></div>
   <ul class="bullets"><li>Extended Booksim2 to support a 3D Torus with bidirectional Z-dimension meshing for reducing bottlenecks from through-silicon vias (TSVs).</li><li>Implemented elevator-first deterministic routing, ensuring livelock and deadlock freedom while prioritizing Z &gt; Y &gt; X traversal.</li><li>Developed Python tooling for flexible elevator mapping: users can specify elevator coordinates via CSV, visualize mappings, and customize nearest-elevator selection functions.</li><li>Modeled TSVs with realistic multi-cycle latency penalties and integrated them into Booksim’s credit-based flow control system.</li><li>Explored elevator placement patterns (diagonal, checkerboard, sub-tiling) and quantified performance tradeoffs across throughput, latency, and injection rate.</li><li>Demonstrated that bidirectional Z-meshing can nearly double sustainable throughput with only ~33% area overhead, with non-linear gains depending on elevator density.</li></ul>
 </article>
 <article class="project-item">
   <h3>SPI-connected PWM Generator</h3>
   <p class="meta">April 2025 – May 2025</p>
   <p class="tags"><strong>Tags:</strong> RTL, ASIC, Tapeout, RTL Verification, Python</p>
+  <p class="links"><a href="https://github.com/sathworld/spi-pwm-peripheral" rel="noopener noreferrer">Repository</a> · <a href="https://gds-viewer.tinytapeout.com/?process=SG13G2&amp;model=https%3A%2F%2Fdamirg.com%2Fspi-pwm-peripheral%2F%2Ftinytapeout.gds" rel="noopener noreferrer">GDSII View</a></p>
   
-  
-  
-  
+  <div class="images"><img src="/portfolio/spi-pwm/SPI_PERIPH.drawio.png" alt="SPI PWM Generator Block Diagram" title="SPI PWM Generator Block Diagram" loading="lazy"><img src="/portfolio/spi-pwm/ASIC-GDS.png" alt="GDSII View" title="GDSII View" loading="lazy"></div>
+  <ul class="bullets"><li>Designed an SPI‑controlled PWM with adjustable frequency and duty cycles for 8 outputs, 2 frequency generators, and 4 channels.</li><li>Implemented the design in RTL using Verilog, targeting a 130nm open source process node based on the IHP130 PDK.</li><li>Verified functionality through extensive simulation and formal verification methods.</li><li>Prepared design for tapeout, including GDSII generation and DRC/LVS checks.</li></ul>
 </article>
 <article class="project-item">
   <h3>Strivonix Main PCBA and Firmware</h3>
   <p class="meta">January 2025 – March 2025</p>
   <p class="tags"><strong>Tags:</strong> Firmware, C, IoT, PCB, PCBA, ESPIDF</p>
+  <p class="links"><a href="https://www.strivonix.com" rel="noopener noreferrer">Strivonix Website</a></p>
   
-  
-  <div class="images"><img src="[object Object]" alt="Strivonix Main PCBA and Firmware image" loading="lazy" style="max-height:70px;object-fit:contain;margin:2px;"><img src="[object Object]" alt="Strivonix Main PCBA and Firmware image" loading="lazy" style="max-height:70px;object-fit:contain;margin:2px;"></div>
-  
+  <div class="images"><img src="/portfolio/Strivonix/IMG_20250519_214240.jpg" alt="Strivonix Main PCBA" title="Strivonix Main PCBA" loading="lazy"><img src="/portfolio/Strivonix/IMG_20250519_214211.jpg" alt="Strivonix PCBA in the housing" title="Strivonix PCBA in the housing" loading="lazy"></div>
+  <ul class="bullets"><li>Led the design and testing of a portable massage device's 4-layer PCB, exceeding the required targets and reducing BOM cost by over 30%.</li><li>Built ESP32-S3 firmware using ESP-IDF with FreeRTOS, utilizing software FSMs for peripheral interactions, achieving 95% accuracy for sensor readings using adaptively tuned Kalman filtering.</li><li>Implemented BLE drivers for the device to enable user-defined protocols that are saved in non-volatile memory (NVS).</li><li>Integrated OTA update functionality to enable remote firmware updates, improving maintainability and user experience.</li><li>Wrote comprehensive documentation for the PCB design and firmware architecture to facilitate future development and maintenance.</li><li>Conducted extensive testing and validation of the PCB and firmware to ensure reliability and performance under various operating conditions.</li></ul>
 </article>
 <article class="project-item">
   <h3>Custom 8-bit Computer Tapeout</h3>
@@ -109,7 +116,7 @@
   <p class="tags"><strong>Tags:</strong> RTL, RTL Verification, Python, Tapeout, ASIC</p>
   <p class="links"><a href="https://github.com/gjrchen/8-Bit-CPU-top" rel="noopener noreferrer">Repository</a> · <a href="https://legacy-gltf.gds-viewer.tinytapeout.com/?model=https://gjrchen.github.io/8-Bit-CPU-top/tinytapeout.gds.gltf" rel="noopener noreferrer">GDSII View</a></p>
   <p class="files"><a href="/portfolio/cpu8bit/8BitCPU_datasheet.pdf" target="_blank" rel="noopener noreferrer">CPU Datasheet</a></p>
-  <div class="images"><img src="[object Object]" alt="Custom 8-bit Computer Tapeout image" loading="lazy" style="max-height:70px;object-fit:contain;margin:2px;"><img src="[object Object]" alt="Custom 8-bit Computer Tapeout image" loading="lazy" style="max-height:70px;object-fit:contain;margin:2px;"><img src="[object Object]" alt="Custom 8-bit Computer Tapeout image" loading="lazy" style="max-height:70px;object-fit:contain;margin:2px;"></div>
+  <div class="images"><img src="/portfolio/cpu8bit/CPU-GDS.png" alt="Post-Layout GDS" title="Post-Layout GDS" loading="lazy"><img src="/portfolio/cpu8bit/8bitSAP-1CPUArch.drawio.png" alt="8-bit SAP-1 CPU Architecture" title="8-bit SAP-1 CPU Architecture" loading="lazy"><img src="/portfolio/cpu8bit/CPU-mermaid.png" alt="CPU Execution State Diagram" title="CPU Execution State Diagram" loading="lazy"></div>
   <ul class="bullets"><li>Architected custom 8-bit ISA CPU with 16 instructions to balance datapath simplicity and opcode density.</li><li>Designed and verified pipelined ALU and register file blocks in Verilog, simulated with Verilator and cocotb.</li><li>Integrated modules from multiple teams to produce tapeout-ready GDS with &gt;20% area savings.</li><li>Validated timing with post-layout netlists and RC extraction to ensure functional accuracy.</li><li>Developed an on-chip programmer to flash programs and data into the RAM by communicating with an external MCU.</li><li>Broke instructions down into microinstructions to be carried out every CPU cycle, enabling the utilization of a single common bus and more complex instructions such as adding from the RAM.</li><li>Developed cocotb test suites for individual modules as well as complete integration tests.</li></ul>
 </article>
 <article class="project-item">
@@ -118,7 +125,7 @@
   <p class="tags"><strong>Tags:</strong> RTL, RTL Verification, Verilator, Tapeout, FPGA, ASIC</p>
   <p class="links"><a href="https://github.com/UW-ASIC/Dino" rel="noopener noreferrer">Repository</a> · <a href="https://gds-viewer.tinytapeout.com/?model=https%3A%2F%2Fshuttle-assets.tinytapeout.com%2Fttihp25a%2Ftt_um_uwasic_dinogame%2Ftt_um_uwasic_dinogame.gds&amp;process=SG13G2" rel="noopener noreferrer">GDSII View</a></p>
   
-  <div class="images"><img src="[object Object]" alt="Dino Game ASIC image" loading="lazy" style="max-height:70px;object-fit:contain;margin:2px;"><img src="[object Object]" alt="Dino Game ASIC image" loading="lazy" style="max-height:70px;object-fit:contain;margin:2px;"><img src="[object Object]" alt="Dino Game ASIC image" loading="lazy" style="max-height:70px;object-fit:contain;margin:2px;"></div>
+  <div class="images"><img src="/portfolio/dinogame/ASIC.png" alt="Post-Layout GDS with visualized activity levels" title="Post-Layout GDS with visualized activity levels" loading="lazy"><img src="/portfolio/dinogame/DinoArchUWASIC.drawio.png" alt="Dino Architecture Diagram" title="Dino Architecture Diagram" loading="lazy"><img src="/portfolio/dinogame/Render.png" alt="Render Captured from an FPGA" title="Render Captured from an FPGA" loading="lazy"></div>
   <ul class="bullets"><li>Designed and FPGA-tested a 160×200 μm Dino Game ASIC with VGA output, submitted for tapeout via TinyTapeout.</li><li>Generated VGA output in real-time (“raced the beam”) to avoid frame buffer memory overhead due to ASIC size limits.</li><li>Architechted a custom graphics module with sprite rendering, collision detection, and game state management.</li><li>Created an elegant way for implementing different colour palettes that are switched based on the game state using only combinational logic.</li><li>Implemented a linear feedback shift register to generate random numbers and a basic physics engine for player physics.</li><li>Developed an autonomous controller in Verilog to play the game when no controller is detected on startup.</li><li>Developed VGA emulator in C++ using SDL2 and Verilat or to simulate chip input/output and test design in real time.</li></ul>
 </article>
 <article class="project-item">
@@ -163,5 +170,5 @@
       <dt>ECAD/Tools</dt><dd>Vivado, cocotb, PSpice, Verilator, Altium Designer, KiCad, ESPIDF, Git, STM32CubeMX, Docker</dd><dt>Languages</dt><dd>Verilog, SystemVerilog, C++, C, Python, Tcl, MATLAB</dd><dt>Lab Equipment</dt><dd>Oscilloscope, Logic Analyzer, Spectral Analyzer, DMM, Hot Air Station, Soldering Iron</dd><dt>Certifications</dt><dd>IPC Certified Interconnect Designer (CID)</dd>
     </dl>
   </section>
-  <footer style="margin-top:3rem; font-size:.875rem; opacity:.7;">Generated 2025-09-09T01:28:23.412Z • Enable JavaScript for full experience.</footer>
+  <footer style="margin-top:3rem; font-size:.875rem; opacity:.7;">Generated 2025-09-15T01:01:15.364Z • Enable JavaScript for full experience.</footer>
 </div>
