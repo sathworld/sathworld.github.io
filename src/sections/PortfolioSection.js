@@ -95,7 +95,7 @@ export const PortfolioSection = () => {
                     );
                 })}
             </div>
-            <div className={`grid w-full gap-8 ${expandedProject ? 'grid-cols-1' : 'grid-cols-1 sm:grid-cols-2'}`} aria-live="polite" aria-busy={false}>
+            <div className={`grid w-full gap-8 grid-cols-1 sm:grid-cols-2`} aria-live="polite" aria-busy={false}>
                 <AnimatePresence mode="popLayout" initial={false}>
                     {filteredProjects.map(project => {
                         const expanded = expandedProject === project.id;
@@ -103,13 +103,13 @@ export const PortfolioSection = () => {
                         return (
                             <motion.div
                                 key={project.id}
-                                layout="position"
+                                layout
                                 variants={itemVariants}
                                 initial="hidden"
                                 animate="show"
                                 exit="exit"
                                 transition={{ duration: 0.28, ease: [0.4,0,0.2,1] }}
-                                className={`${dimOthers ? 'opacity-40 hover:opacity-100 transition-opacity' : 'opacity-100'} ${expanded ? 'col-span-1' : ''}`}
+                                className={`${dimOthers ? 'opacity-40 hover:opacity-100 transition-opacity' : 'opacity-100'} ${expanded ? 'sm:col-span-2' : ''}`}
                                 style={{ zIndex: expanded ? 60 : undefined }}
                             >
                                 <ProjectCard

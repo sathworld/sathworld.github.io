@@ -28,6 +28,7 @@ export const ProjectCard = ({
     }, [images]);
     return (
         <motion.button
+            layout
             type="button"
             className={`text-left relative p-6 card-surface card-gradient-light dark:card-gradient-dark min-w-[250px] w-full flex flex-col hover-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 rounded-xl select-text overflow-visible isolate ${isExpanded ? 'shadow-xl' : ''}`}
             initial={{ opacity: 0 }}
