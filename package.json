@@ -18,9 +18,10 @@
     "web-vitals": "^5.1.0"
   },
   "scripts": {
-  "start": "react-scripts start",
-  "generate:noscript": "node scripts/generate-noscript.js",
-  "build": "npm run generate:noscript && react-scripts build",
+    "start": "react-scripts start",
+    "generate:noscript": "node scripts/generate-noscript.js",
+    "generate:portfolio-docx": "node scripts/generate-portfolio-docx.js",
+    "build": "npm run generate:noscript && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
@@ -45,6 +46,8 @@
     ]
   },
   "devDependencies": {
-    "gh-pages": "^6.3.0"
+    "docx": "^9.5.1",
+    "gh-pages": "^6.3.0",
+    "sharp": "^0.34.3"
   }
 }

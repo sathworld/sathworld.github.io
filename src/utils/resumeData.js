@@ -130,6 +130,9 @@ export const resumeData = {
       links: [
         { label: 'Repository', url: 'https://github.com/Electrium-Mobility/sresc' }
       ],
+      images: [
+        { src: '/portfolio/sresc/sresc.webp', title: 'ESC Design Overview' }
+      ]
     },
     {
       title: "FPGA Implementation of a configurable digital 512x512 Matrix-Vector Multiplier targeting Xilinx Series 7 FPGAs",
