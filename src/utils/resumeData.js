@@ -1,5 +1,3 @@
-import { image, title } from "framer-motion/client";
-
 export const resumeData = {
   education: {
     university: "University of Waterloo",
@@ -96,21 +94,82 @@ export const resumeData = {
       duration: "June 2025 – November 2025",
       tags: [
         'ASIC', 'Signal Processing', 'Simulation', 'ASIC Layout'
-      ]
+      ],
+      images: [
+        { src: '/portfolio/mvm/MVM-ASIC-DIAGRAM.webp', title: 'Matrix-Vector Multiplier Architecture Diagram' },
+        { src: '/portfolio/mvm/VMM-Principle.png', title: 'Principle of Operation Diagram' }
+      ],
+      description: [
+        "Computes matrix–vector products with programmable resistors (weights), DAC-driven inputs, TIAs, and SAR ADCs.",
+        "Defined SAR ADC architecture and conversion sequencing to digitize outputs Y1…Yn.",
+        "Designed trans-impedance amplifiers (TIAs) to sense and condition MVM currents for accurate readout.",
+        "Built voltage-source DACs to drive input vector voltages representing column entries −X1…−Xm.",
+        "Implemented programmable-resistor DACs to encode row entries per the system architecture.",
+        "Developed digital control and interface logic supporting AXI interface to drive biases, orchestrate conversions, and read back results.",
+        "Surveyed IEEE literature and alternative analog MVM implementations to guide design trade-offs.",
+        "Developed a custom tool that optimizes xschem schematics by running automated ngspice simulations and parameter sweeps.",
+        "Designed SAR ADC blocks and low-noise, high-bandwidth op-amps for TIA front-ends and buffering stages."
+      ],
+      links: [
+        { label: 'Repository', url: 'https://github.com/UW-ASIC/Matrix-Vector-Multiplier' },
+        { label: 'Custom-made Schematic Optimizer', url: 'https://github.com/UW-ASIC/UWASIC-ALG' }
+      ],
     },
     {
       title: "Custom 50V ESC PCBA for Micromobility Vehicles with BLDC Motors",
       duration: "May 2025 – September 2025",
       tags: [
         'PCBA', 'PCB'
+      ],
+      description: [
+        "Designed a custom 4-layer PCB for a 50V brushless motor electronic speed controller (ESC) targeting micromobility vehicles.",
+        "Created the schematic and PCB layout in KiCad, ensuring signal integrity and thermal management for high-current paths.",
+        "Selected components and created a bill of materials (BOM) that reduced costs by over 30% while meeting performance requirements.",
+        "Increased availability of user-accessible GPIO by 10% compared to existing ESCs on the market."
+      ],
+      links: [
+        { label: 'Repository', url: 'https://github.com/Electrium-Mobility/sresc' }
+      ],
+    },
+    {
+      title: "FPGA Implementation of a configurable digital 512x512 Matrix-Vector Multiplier targeting Xilinx Series 7 FPGAs",
+      duration: "July 2025 – August 2025",
+      tags: [
+        'RTL','FPGA', 'RTL Verification', 'Python', 'Signal Processing'
+      ],
+      description: [
+        "Designed a highly configurable digital matrix-vector multiplier (MVM) in Verilog, capable of handling 512x512 matrices with 8-bit integers.",
+        "Implemented the design to utilize Xilinx Series 7 FPGA DSP slices for efficient multiplication and addition operations, utilizing bit-packing techniques and ternary adders to maximize resource efficiency.",
+        "Developed a Python-based testbench using cocotb to perform exhaustive verification of separate modules and the overall MVM system, achieving 100% functional coverage across all configurations.",
+        "Achieved a clock frequency of up to 300 MHz on a Xilinx Pynq-Z1 board, with throughput of 38.4 GOPS.",
+        "Obtained resource usage of approximately 95% of DSP slices and 70% of LUTs on the FPGA for the full 512x512 configuration.",
+        "Utilized various implementation strategies, including disabling synthesis optimizations and floorplanning, to meet timing constraints and optimize performance."
+      ],
+      links: [
+        { label: 'Repository', url: 'https://github.com/sathworld/mvm' }
+      ],
+      images: [
+        { src: '/portfolio/mvm327/MVM-FPGA-Block-Diagram.png', title: 'Matrix-Vector Multiplier FPGA Block Diagram' },
+        { src: '/portfolio/mvm327/MVM-FPGA-Resource-Usage.png', title: 'Resource Usage on Xilinx Pynq-Z1' },
       ]
     },
     {
       title: "ASIC & FPGA Implementation on a Torus NoC based on HopliteRT",
       duration: "May 2025 – August 2025",
       tags: [
-        'Networks-on-Chip', 'RTL', 'ASIC', 'FPGA'
-      ]
+        'Networks-on-Chip', 'RTL', 'ASIC', 'FPGA', 'RTL Verification', 'Python'
+      ],
+      description: [
+        "Implemented a 4x4 2D Torus Network-on-Chip using the HopliteRT router architecture, supporting virtual channels and deadlock-free routing.",
+        "Designed and verified the NoC (including router, switch, and a client interface components) in SystemVerilog, simulating with Verilator and to ensure correct functionality and performance.",
+        "Achieved timing closure on the ASIC design targeting the TSMC 65nm node using Synopsys Design Compiler and Innovus, meeting the performance and area requirements.",
+        "Successfully synthesized and implemented the NoC on a Xilinx Artix-7 FPGA, achieving a maximum clock frequency of 200 MHz.",
+        "Developed a script for custom placement of the NoC routers on the FPGA and floorplanning to optimize routing and minimize latency."
+      ],
+      links: [
+        { label: 'Repository', url: '' },
+        { label: 'HopliteRT', url: 'https://nachiket.github.io/publications/hoplitert_fpt-2017.pdf' }
+      ],
     },
     {
       title: "3D Torus NoC Simulator in Booksim",
@@ -142,6 +201,20 @@ export const resumeData = {
       duration: "April 2025 – May 2025",
       tags: [
         'RTL', 'ASIC', 'Tapeout', 'RTL Verification', 'Python'
+      ],
+      description: [
+        "Designed an SPI‑controlled PWM with adjustable frequency and duty cycles for 8 outputs, 2 frequency generators, and 4 channels.",
+        "Implemented the design in RTL using Verilog, targeting a 130nm open source process node based on the IHP130 PDK.",
+        "Verified functionality through extensive simulation and formal verification methods.",
+        "Prepared design for tapeout, including GDSII generation and DRC/LVS checks."
+      ],
+      links: [
+        { label: 'Repository', url: 'https://github.com/sathworld/spi-pwm-peripheral' },
+        { label: 'GDSII View', url: 'https://gds-viewer.tinytapeout.com/?process=SG13G2&model=https%3A%2F%2Fdamirg.com%2Fspi-pwm-peripheral%2F%2Ftinytapeout.gds' }
+      ],
+      images: [
+        { src: '/portfolio/spi-pwm/SPI_PERIPH.drawio.png', title: 'SPI PWM Generator Block Diagram' },
+        { src: '/portfolio/spi-pwm/ASIC-GDS.png', title: 'GDSII View' }
       ]
     },
     {
@@ -214,12 +287,6 @@ export const resumeData = {
       duration: "August 2022 – January 2023",
       tags: [
         'C++', 'MATLAB', 'Signal Processing', 'IoT'
-      ],
-      images: [
-      ],
-      links: [
-      ],
-      files: [
       ],
       description: [
         "Built a WiFi-enabled wearable using an ESP8266 SoC and multiple I2C sensors for biometric monitoring.",
